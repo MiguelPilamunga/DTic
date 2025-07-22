@@ -1,0 +1,78 @@
+# Configuración global para nodos atacantes
+---
+# Herramientas de ataque a instalar
+attack_tools:
+  - hydra
+  - nmap
+  - masscan
+  - python3-pip
+  - curl
+  - netcat
+  - hping3
+
+# Configuración de ataques SSH
+ssh_attack:
+  port: 22
+  threads: 4
+  timeout: 30
+  username_list: /opt/usernames.txt
+  password_list: /opt/passwords.txt
+  
+# Configuración de ataques FTP
+ftp_attack:
+  port: 21
+  threads: 2
+  timeout: 30
+  username_list: /opt/ftp_users.txt
+  password_list: /opt/ftp_passwords.txt
+
+# Configuración de ataques HTTP
+http_attack:
+  port: 80
+  threads: 6
+  timeout: 15
+  paths: 
+    - /admin
+    - /login
+    - /wp-admin
+    - /administrator
+
+# Configuración de coordinación distribuida
+coordination:
+  sync_interval: 60  # segundos
+  reporting_interval: 30  # segundos
+  max_failure_rate: 0.1  # 10% max fallos
+  backoff_multiplier: 2
+
+# Configuración de evasión
+evasion:
+  min_delay: 5  # segundos mínimos entre ataques
+  max_delay: 30  # segundos máximos entre ataques
+  randomize_user_agent: true
+  randomize_source_port: true
+  use_tor_proxy: false
+
+# Listas de credenciales comunes
+common_credentials:
+  usernames:
+    - admin
+    - administrator
+    - root
+    - user
+    - test
+    - guest
+    - demo
+    - operator
+    - manager
+    - service
+  passwords:
+    - admin
+    - password
+    - 123456
+    - root
+    - test
+    - guest
+    - demo
+    - changeme
+    - default
+    - service

@@ -1,0 +1,111 @@
+# SSH Configuration for Brute Force Research Lab
+# WARNING: This configuration is intentionally vulnerable for research purposes only
+# DO NOT use in production environments
+
+# Basic connection settings
+Port 22
+Protocol 2
+AddressFamily any
+ListenAddress 0.0.0.0
+
+# Host keys
+HostKey /etc/ssh/ssh_host_rsa_key
+HostKey /etc/ssh/ssh_host_ecdsa_key
+HostKey /etc/ssh/ssh_host_ed25519_key
+
+# Logging - Enhanced for research
+SyslogFacility AUTH
+LogLevel VERBOSE
+
+# Authentication settings - Configured for brute force testing
+LoginGraceTime 120
+PermitRootLogin yes
+StrictModes no
+MaxAuthTries 6
+MaxSessions 10
+MaxStartups 30:30:100
+
+# Password authentication - Enabled for testing
+PasswordAuthentication yes
+PermitEmptyPasswords no
+ChallengeResponseAuthentication yes
+
+# Public key authentication
+PubkeyAuthentication yes
+AuthorizedKeysFile .ssh/authorized_keys
+
+# Kerberos options
+KerberosAuthentication no
+KerberosOrLocalPasswd yes
+KerberosTicketCleanup yes
+
+# GSSAPI options
+GSSAPIAuthentication no
+GSSAPICleanupCredentials yes
+
+# Set this to 'yes' to enable PAM authentication
+UsePAM yes
+
+# Allow users to set environment options
+PermitUserEnvironment no
+
+# Accept locale-related environment variables
+AcceptEnv LANG LC_*
+
+# Override default of no subsystems
+Subsystem sftp /usr/lib/openssh/sftp-server
+
+# Enable compression
+Compression delayed
+
+# Client alive settings - Allow connections to stay open
+ClientAliveInterval 600
+ClientAliveCountMax 3
+
+# TCP keep alive
+TCPKeepAlive yes
+
+# X11 forwarding
+X11Forwarding yes
+X11DisplayOffset 10
+X11UseLocalhost yes
+
+# Print message of the day
+PrintMotd yes
+PrintLastLog yes
+
+# Banner settings
+Banner /etc/ssh/banner
+
+# Allow/Deny specific users and groups for testing
+AllowUsers testuser1 testuser2 admin root
+AllowGroups users admin
+
+# Timeout settings - More permissive for research
+ConnectTimeout 30
+
+# Disable privilege separation for easier monitoring
+UsePrivilegeSeparation no
+
+# Enable detailed logging for failed attempts
+SyslogFacility AUTHPRIV
+
+# Additional vulnerable settings for research
+PermitTunnel yes
+GatewayPorts yes
+
+# Research-specific settings
+# Allow weak ciphers and MACs for testing older attack tools
+Ciphers aes128-ctr,aes192-ctr,aes256-ctr,aes128-cbc,3des-cbc,blowfish-cbc,aes192-cbc,aes256-cbc
+MACs hmac-md5,hmac-sha1,hmac-ripemd160,hmac-sha1-96,hmac-md5-96
+
+# Key exchange algorithms
+KexAlgorithms diffie-hellman-group-exchange-sha256,diffie-hellman-group-exchange-sha1,diffie-hellman-group14-sha1,diffie-hellman-group1-sha1
+
+# Host-based authentication (disabled but shown for reference)
+HostbasedAuthentication no
+IgnoreUserKnownHosts no
+IgnoreRhosts yes
+
+# Research note: This configuration allows for comprehensive brute force testing
+# while maintaining logging capabilities for analysis

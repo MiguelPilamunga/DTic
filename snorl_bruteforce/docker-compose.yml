@@ -1,0 +1,145 @@
+services:
+  # Servidor objetivo Ubuntu con SSH y FTP vulnerables
+  target-server:
+    build:
+      context: ./containers/target
+      dockerfile: Dockerfile
+    container_name: target-ubuntu
+    hostname: target-server
+    networks:
+      lab-network:
+        ipv4_address: 192.168.100.100
+    ports:
+      - "2222:22"  # SSH
+      - "2121:21"  # FTP
+      - "8080:80"  # HTTP
+    volumes:
+      - ./target_services:/opt/services
+      - ./logs/target:/var/log/target
+    environment:
+      - DEBIAN_FRONTEND=noninteractive
+    restart: unless-stopped
+
+  # Servidor Snort IDS/IPS
+  snort-ids:
+    build:
+      context: ./containers/snort
+      dockerfile: Dockerfile
+    container_name: snort-monitor
+    hostname: snort-ids
+    volumes:
+      - ./snort_config:/etc/snort
+      - ./logs/snort:/var/log/snort
+    environment:
+      - TARGET_NETWORK=192.168.100.0/24
+      - MONITOR_INTERFACE=eth0
+    cap_add:
+      - NET_ADMIN
+      - NET_RAW
+    network_mode: "host"
+    privileged: true
+    restart: unless-stopped
+    depends_on:
+      - target-server
+
+  # Atacante Kali 1 - SSH
+  attacker-kali-1:
+    build: ./containers/attacker
+    container_name: kali-attacker-1
+    hostname: attacker-node-1
+    networks:
+      lab-network:
+        ipv4_address: 192.168.100.10
+    environment:
+      - TARGET_IP=192.168.100.100
+      - NODE_ID=1
+      - ATTACK_RATE=0.5
+      - TARGET_SERVICE=ssh
+      - ATTACK_THREADS=4
+    stdin_open: true
+    tty: true
+    depends_on:
+      - target-server
+
+  # Atacante Kali 2 - FTP
+  attacker-kali-2:
+    build: ./containers/attacker
+    container_name: kali-attacker-2
+    hostname: attacker-node-2
+    networks:
+      lab-network:
+        ipv4_address: 192.168.100.11
+    environment:
+      - TARGET_IP=192.168.100.100
+      - NODE_ID=2
+      - ATTACK_RATE=0.3
+      - TARGET_SERVICE=ftp
+      - ATTACK_THREADS=2
+    stdin_open: true
+    tty: true
+    depends_on:
+      - target-server
+
+  # Atacante Kali 3 - HTTP
+  attacker-kali-3:
+    build: ./containers/attacker
+    container_name: kali-attacker-3
+    hostname: attacker-node-3
+    networks:
+      lab-network:
+        ipv4_address: 192.168.100.12
+    environment:
+      - TARGET_IP=192.168.100.100
+      - NODE_ID=3
+      - ATTACK_RATE=0.4
+      - TARGET_SERVICE=http
+      - ATTACK_THREADS=6
+    stdin_open: true
+    tty: true
+    depends_on:
+      - target-server
+
+  # Atacante Kali 4 - SSH
+  attacker-kali-4:
+    build: ./containers/attacker
+    container_name: kali-attacker-4
+    hostname: attacker-node-4
+    networks:
+      lab-network:
+        ipv4_address: 192.168.100.13
+    environment:
+      - TARGET_IP=192.168.100.100
+      - NODE_ID=4
+      - ATTACK_RATE=0.2
+      - TARGET_SERVICE=ssh
+      - ATTACK_THREADS=4
+    stdin_open: true
+    tty: true
+    depends_on:
+      - target-server
+
+  # Atacante Kali 5 - FTP
+  attacker-kali-5:
+    build: ./containers/attacker
+    container_name: kali-attacker-5
+    hostname: attacker-node-5
+    networks:
+      lab-network:
+        ipv4_address: 192.168.100.14
+    environment:
+      - TARGET_IP=192.168.100.100
+      - NODE_ID=5
+      - ATTACK_RATE=0.6
+      - TARGET_SERVICE=ftp
+      - ATTACK_THREADS=2
+    stdin_open: true
+    tty: true
+    depends_on:
+      - target-server
+
+networks:
+  lab-network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 192.168.100.0/24

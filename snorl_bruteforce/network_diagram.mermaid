@@ -1,0 +1,75 @@
+graph TB
+    subgraph "Docker Host - 192.168.0.105"
+        subgraph "Docker Bridge Network - br-e4a61fe26bee"
+            subgraph "172.18.0.0/16"
+                Target["🎯 Target Ubuntu<br/>172.18.0.2<br/>target-ubuntu"]
+                Attacker["⚔️ Kali Attacker<br/>172.18.0.3<br/>kali-attacker"]
+                Snort["🛡️ Snort IDS<br/>Host Network<br/>snort-monitor"]
+            end
+        end
+    end
+    
+    subgraph "Host Ports"
+        SSH_PORT["SSH: 2222 → 22"]
+        FTP_PORT["FTP: 2121 → 21"]
+        HTTP_PORT["HTTP: 8080 → 80"]
+    end
+    
+    subgraph "Attack Flow"
+        Attack1["Hydra SSH Brute Force"]
+        Attack2["Multiple Connections"]
+        Attack3["Port Scanning"]
+    end
+    
+    subgraph "Detection Flow"
+        Capture["Packet Capture"]
+        Analysis["Protocol Analysis"]
+        Logging["Traffic Logging"]
+    end
+    
+    subgraph "Credentials Found"
+        Cred1["admin:admin ✅"]
+        Cred2["root:toor ✅"]
+        Cred3["test:password"]
+        Cred4["guest:guest"]
+    end
+    
+    %% Connections
+    Attacker -->|SSH Brute Force| Target
+    Attacker -->|Multiple Ports: 54050,54056,54064...| Target
+    
+    %% Port Mappings
+    Target --> SSH_PORT
+    Target --> FTP_PORT  
+    Target --> HTTP_PORT
+    
+    %% Attack Types
+    Attacker --> Attack1
+    Attacker --> Attack2
+    Attacker --> Attack3
+    
+    %% Snort Monitoring
+    Snort -->|Monitors| Target
+    Snort -->|Monitors| Attacker
+    Snort --> Capture
+    Snort --> Analysis
+    Snort --> Logging
+    
+    %% Results
+    Attack1 --> Cred1
+    Attack1 --> Cred2
+    Attack1 --> Cred3
+    Attack1 --> Cred4
+    
+    %% Styling
+    classDef targetStyle fill:#ff9999,stroke:#333,stroke-width:3px
+    classDef attackerStyle fill:#ffcc99,stroke:#333,stroke-width:3px
+    classDef snortStyle fill:#99ccff,stroke:#333,stroke-width:3px
+    classDef successStyle fill:#99ff99,stroke:#333,stroke-width:2px
+    classDef portStyle fill:#ffffcc,stroke:#333,stroke-width:1px
+    
+    class Target targetStyle
+    class Attacker attackerStyle
+    class Snort snortStyle
+    class Cred1,Cred2 successStyle
+    class SSH_PORT,FTP_PORT,HTTP_PORT portStyle

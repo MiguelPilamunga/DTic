@@ -1,0 +1,54 @@
+# Entornos virtuales
+venv/
+network_venv/
+env/
+ENV/
+.venv/
+
+# Logs
+logs/
+*.log
+*.log.*
+
+# Bases de datos
+*.sqlite
+*.db
+
+# Archivos sensibles
+passwords.txt
+usernames.txt
+credentials/
+secrets/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.so
+
+# Archivos temporales
+*.tmp
+*.temp
+.DS_Store
+Thumbs.db
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Resultados de análisis
+*_analysis_*.json
+*_report_*.json
+
+# Archivos de configuración local
+.env
+.env.local
+config.local.*
+
+# Docker volumes y datos
+volumes/
+data/

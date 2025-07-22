@@ -1,0 +1,35 @@
+============================================================
+DOCKER NETWORK STEALTH RECONNAISSANCE
+============================================================
+Scan date: 2025-07-21 17:50:35
+Target network: 172.18.0.0/24
+Devices discovered: 3
+
+----------------------------------------
+IP: 172.18.0.1
+Hostname: archlinux
+Service Type: Docker Gateway
+Discovery Method: stealth-ping
+Timestamp: 2025-07-21 17:48:41
+
+----------------------------------------
+IP: 172.18.0.2
+Hostname: unknown-2
+Service Type: Docker Container
+Discovery Method: stealth-ping
+Timestamp: 2025-07-21 17:48:49
+
+----------------------------------------
+IP: 172.18.0.3
+Hostname: unknown-3
+Service Type: Docker Container
+Discovery Method: stealth-ping
+Timestamp: 2025-07-21 17:48:57
+
+============================================================
+STEALTH TECHNIQUES USED:
+- Ultra-slow ping sweeps (5+ second delays)
+- Passive DNS resolution only
+- Minimal packet signatures
+- Human-like timing patterns
+- Single packet probes

@@ -1,0 +1,47 @@
+# Configuración para sistemas de monitoreo
+---
+# Configuración de Snort
+snort:
+  config_dir: /etc/snort
+  log_dir: /var/log/snort
+  rules_dir: /etc/snort/rules
+  interface: eth0
+  home_net: 192.168.100.0/24
+  external_net: "!192.168.100.0/24"
+  
+# Reglas específicas para ataques distribuidos
+distributed_attack_rules:
+  - name: "Distributed SSH Brute Force"
+    threshold: "threshold: type both, track by_dst, count 10, seconds 60"
+    suppress: "suppress: gen_id 1, sig_id 2001219, track by_src, ip 192.168.100.0/24"
+    
+  - name: "Coordinated Multi-Service Attack"
+    threshold: "threshold: type both, track by_dst, count 5, seconds 30"
+    suppress: "suppress: gen_id 1, sig_id 2001220, track by_src, ip 192.168.100.0/24"
+
+# Configuración de logging avanzado
+advanced_logging:
+  enable_pcap: true
+  pcap_rotation: "size 100M files 10"
+  enable_json_output: true
+  enable_syslog: true
+  enable_database: false
+  
+# Configuración de alertas
+alerting:
+  email_notifications: false
+  slack_webhook: ""
+  severity_levels:
+    - critical
+    - high
+    - medium
+    - low
+    
+# Herramientas de análisis
+analysis_tools:
+  - tcpdump
+  - wireshark-cli
+  - python3-scapy
+  - jq
+  - grep
+  - awk

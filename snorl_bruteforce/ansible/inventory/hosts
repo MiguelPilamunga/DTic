@@ -1,0 +1,32 @@
+[attackers]
+attacker-node-1 ansible_host=192.168.100.10 node_id=1 attack_rate=0.5 target_service=ssh
+attacker-node-2 ansible_host=192.168.100.11 node_id=2 attack_rate=0.3 target_service=ftp
+attacker-node-3 ansible_host=192.168.100.12 node_id=3 attack_rate=0.4 target_service=http
+attacker-node-4 ansible_host=192.168.100.13 node_id=4 attack_rate=0.2 target_service=ssh
+attacker-node-5 ansible_host=192.168.100.14 node_id=5 attack_rate=0.6 target_service=ftp
+
+[targets]
+target-server ansible_host=192.168.100.100
+
+[monitors]
+snort-ids ansible_host=192.168.100.200
+
+[coordinators]
+ansible-controller ansible_host=192.168.100.50
+
+[attackers:vars]
+ansible_user=root
+ansible_ssh_private_key_file=~/.ssh/lab_key
+target_ip=192.168.100.100
+attack_duration=300
+max_connections=10
+credential_file=/opt/credentials.txt
+
+[targets:vars]
+ansible_user=ubuntu
+ansible_ssh_private_key_file=~/.ssh/lab_key
+
+[monitors:vars]
+ansible_user=root
+ansible_ssh_private_key_file=~/.ssh/lab_key
+log_retention_days=7

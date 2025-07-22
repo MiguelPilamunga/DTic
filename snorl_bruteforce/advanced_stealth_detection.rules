@@ -1,0 +1,114 @@
+
+# ADVANCED SNORT CONFIGURATION
+# Defensive rules against sophisticated stealth attacks
+# Generated: 2025-07-21 20:07:31
+
+# Enable statistical analysis preprocessors
+preprocessor stream5_global: track_tcp yes, track_udp yes, track_icmp yes, \
+    max_tcp 262144, max_udp 131072, max_icmp 65536
+
+preprocessor stream5_tcp: policy first, use_static_footprint_sizes, \
+    timeout 180, overlap_limit 10, small_segments 3 bytes 150, \
+    ports client 21 22 23 25 42 53 80 110 111 135 136 137 139 143 \
+    445 513 514 587 593 691 1433 1521 2100 3306
+
+# Enhanced flow tracking for behavioral analysis
+preprocessor flow: stats_interval 0, hash 2
+
+# Advanced detection variables
+var STEALTH_ATTACK_THRESHOLD 3
+var ULTRA_SLOW_WINDOW 1800  # 30 minutes
+var FRAGMENT_SIZE_THRESHOLD 48
+var LONG_SESSION_THRESHOLD 3600  # 1 hour
+
+# Behavioral tracking flowbits
+var SSH_AUTH_ATTEMPT "ssh.auth.attempt"
+var LONG_SSH_SESSION "long.ssh.session"
+var DECOY_TRAFFIC "decoy.traffic.detected"
+var FRAGMENT_ATTACK "fragment.attack.detected"
+
+
+# BEHAVIORAL RULE 1: Ultra-Slow Persistent SSH Attempts
+# Detects sources making SSH connections with suspicious timing patterns
+# Triggers on 3+ SSH connections over 30 minutes from same source
+
+alert tcp any any -> any 22 (msg:"Ultra-Slow SSH Brute Force Pattern"; 
+    flow:to_server,new_session; content:"SSH-2.0"; depth:7; 
+    detection_filter:track by_src, count 3, seconds 1800;
+    threshold:type both, track by_src, count 3, seconds 1800;
+    classtype:attempted-recon; priority:2; sid:2000001; rev:1;)
+        
+
+
+# BEHAVIORAL RULE 2: Abnormally Long SSH Sessions
+# Detects SSH sessions lasting longer than typical user sessions
+# May indicate connection reuse for multiple attempts
+
+alert tcp any any -> any 22 (msg:"Abnormally Long SSH Session"; 
+    flow:to_server,established; content:"SSH-"; depth:4;
+    flowbits:set,long.ssh.session; flowbits:noalert;
+    threshold:type limit, track by_flow, count 1, seconds 3600;
+    classtype:policy-violation; priority:3; sid:2000002; rev:1;)
+        
+
+
+# BEHAVIORAL RULE 3: Suspicious Multi-Protocol Activity
+# Detects coordinated HTTP and SSH activity suggesting decoy traffic
+# Looks for HTTP activity within time window of SSH attempts
+
+alert tcp any any -> any [80,443] (msg:"HTTP Activity Near SSH Attempts"; 
+    flow:to_server,established; content:"GET "; depth:4;
+    flowbits:isset,ssh.auth.attempt; 
+    classtype:policy-violation; priority:3; sid:2000003; rev:1;)
+        
+
+
+# BEHAVIORAL RULE 4: SSH Fragmentation Evasion
+# Detects SSH authentication using suspiciously small packets
+# May indicate fragmentation for signature evasion
+
+alert tcp any any -> any 22 (msg:"SSH Fragmentation Evasion Attempt"; 
+    flow:to_server,established; dsize:<48; 
+    content:"userauth"; distance:0;
+    detection_filter:track by_src, count 3, seconds 180;
+    classtype:attempted-dos; priority:2; sid:2000004; rev:1;)
+        
+
+
+# STATISTICAL RULE 1: Low Entropy in Connection Timing
+# Requires custom script to calculate timing entropy
+# Detects artificially generated timing patterns
+
+# This rule requires external statistical analysis
+# Implementation: Monitor SSH connection timestamps
+# Calculate entropy of inter-arrival times
+# Alert if entropy suggests artificial generation
+        
+
+
+# STATISTICAL RULE 2: Authentication Failure Pattern Analysis
+# Tracks authentication failure patterns over time
+# Detects systematic credential testing
+
+alert tcp any any -> any 22 (msg:"Systematic SSH Credential Testing"; 
+    flow:to_server,established; content:"userauth-failure";
+    detection_filter:track by_src, count 5, seconds 3600;
+    threshold:type both, track by_src, count 10, seconds 7200;
+    classtype:attempted-user; priority:2; sid:3000001; rev:1;)
+        
+
+# CORRELATION RULES
+# These rules correlate multiple indicators
+
+# Rule: SSH + HTTP correlation from same source
+alert tcp any any -> any any (msg:"SSH-HTTP Correlation Attack Pattern"; 
+    flow:established; flowbits:isset,ssh.auth.attempt; 
+    flowbits:isset,decoy.traffic.detected;
+    classtype:attempted-recon; priority:1; sid:4000001; rev:1;)
+
+# Rule: Multiple evasion techniques detected
+alert tcp any any -> any 22 (msg:"Multiple SSH Evasion Techniques Detected"; 
+    flow:established; flowbits:isset,fragment.attack.detected;
+    flowbits:isset,long.ssh.session;
+    classtype:attempted-dos; priority:1; sid:4000002; rev:1;)
+        

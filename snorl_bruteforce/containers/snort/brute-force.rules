@@ -1,0 +1,67 @@
+# Brute Force Detection Rules for Academic Research
+# These rules detect common brute force attack patterns
+
+# SSH Brute Force Detection
+alert tcp $EXTERNAL_NET any -> $SSH_SERVERS $SSH_PORTS (msg:"SSH Brute Force - Multiple failed logins"; flow:to_server,established; content:"SSH-"; offset:0; depth:4; detection_filter:track by_src, count 5, seconds 60; threshold:type limit, track by_src, count 1, seconds 300; classtype:attempted-admin; sid:1000001; rev:1;)
+
+alert tcp $EXTERNAL_NET any -> $SSH_SERVERS $SSH_PORTS (msg:"SSH Brute Force - Rapid connection attempts"; flow:to_server; flags:S,12; detection_filter:track by_src, count 10, seconds 60; threshold:type limit, track by_src, count 1, seconds 60; classtype:attempted-recon; sid:1000002; rev:1;)
+
+alert tcp $EXTERNAL_NET any -> $SSH_SERVERS $SSH_PORTS (msg:"SSH Brute Force - Authentication failure pattern"; flow:to_server,established; content:"Authentication failure"; nocase; detection_filter:track by_src, count 3, seconds 30; classtype:attempted-admin; sid:1000003; rev:1;)
+
+# FTP Brute Force Detection
+alert tcp $EXTERNAL_NET any -> $FTP_SERVERS $FTP_PORTS (msg:"FTP Brute Force - Multiple login attempts"; flow:to_server,established; content:"USER "; offset:0; depth:5; detection_filter:track by_src, count 5, seconds 60; threshold:type limit, track by_src, count 1, seconds 300; classtype:attempted-admin; sid:1000004; rev:1;)
+
+alert tcp $EXTERNAL_NET any -> $FTP_SERVERS $FTP_PORTS (msg:"FTP Brute Force - Failed login responses"; flow:from_server,established; content:"530 "; offset:0; depth:4; detection_filter:track by_dst, count 5, seconds 60; classtype:attempted-admin; sid:1000005; rev:1;)
+
+alert tcp $EXTERNAL_NET any -> $FTP_SERVERS $FTP_PORTS (msg:"FTP Brute Force - Rapid connection pattern"; flow:to_server; flags:S,12; detection_filter:track by_src, count 15, seconds 60; threshold:type limit, track by_src, count 1, seconds 60; classtype:attempted-recon; sid:1000006; rev:1;)
+
+# Telnet Brute Force Detection
+alert tcp $EXTERNAL_NET any -> $TELNET_SERVERS $TELNET_PORTS (msg:"Telnet Brute Force - Multiple login attempts"; flow:to_server,established; content:"login:"; nocase; detection_filter:track by_src, count 5, seconds 60; threshold:type limit, track by_src, count 1, seconds 300; classtype:attempted-admin; sid:1000007; rev:1;)
+
+alert tcp $EXTERNAL_NET any -> $TELNET_SERVERS $TELNET_PORTS (msg:"Telnet Brute Force - Login incorrect pattern"; flow:from_server,established; content:"Login incorrect"; nocase; detection_filter:track by_dst, count 3, seconds 30; classtype:attempted-admin; sid:1000008; rev:1;)
+
+# HTTP Authentication Brute Force
+alert tcp $EXTERNAL_NET any -> $HOME_NET 80 (msg:"HTTP Basic Auth Brute Force"; flow:to_server,established; content:"Authorization: Basic"; http_header; detection_filter:track by_src, count 10, seconds 60; threshold:type limit, track by_src, count 1, seconds 300; classtype:web-application-attack; sid:1000009; rev:1;)
+
+alert tcp $EXTERNAL_NET any -> $HOME_NET 443 (msg:"HTTPS Basic Auth Brute Force"; flow:to_server,established; content:"Authorization: Basic"; http_header; detection_filter:track by_src, count 10, seconds 60; threshold:type limit, track by_src, count 1, seconds 300; classtype:web-application-attack; sid:1000010; rev:1;)
+
+# Generic Brute Force Patterns
+alert tcp $EXTERNAL_NET any -> $HOME_NET any (msg:"Potential Brute Force - High connection rate"; flow:to_server; flags:S,12; detection_filter:track by_src, count 50, seconds 60; threshold:type limit, track by_src, count 1, seconds 60; classtype:attempted-recon; sid:1000011; rev:1;)
+
+alert tcp $EXTERNAL_NET any -> $HOME_NET any (msg:"Brute Force - Dictionary attack pattern"; flow:to_server,established; content:"admin"; nocase; detection_filter:track by_src, count 5, seconds 30; threshold:type limit, track by_src, count 1, seconds 300; classtype:attempted-admin; sid:1000012; rev:1;)
+
+alert tcp $EXTERNAL_NET any -> $HOME_NET any (msg:"Brute Force - Common credentials attempt"; flow:to_server,established; pcre:"/(?:admin|root|administrator|user|guest|test)/i"; detection_filter:track by_src, count 5, seconds 60; threshold:type limit, track by_src, count 1, seconds 300; classtype:attempted-admin; sid:1000013; rev:1;)
+
+# RDP Brute Force (if testing Windows services)
+alert tcp $EXTERNAL_NET any -> $HOME_NET 3389 (msg:"RDP Brute Force - Multiple connection attempts"; flow:to_server; flags:S,12; detection_filter:track by_src, count 10, seconds 60; threshold:type limit, track by_src, count 1, seconds 300; classtype:attempted-admin; sid:1000014; rev:1;)
+
+# VNC Brute Force
+alert tcp $EXTERNAL_NET any -> $HOME_NET 5900:5999 (msg:"VNC Brute Force - Multiple connection attempts"; flow:to_server; flags:S,12; detection_filter:track by_src, count 8, seconds 60; threshold:type limit, track by_src, count 1, seconds 300; classtype:attempted-admin; sid:1000015; rev:1;)
+
+# MySQL Brute Force
+alert tcp $EXTERNAL_NET any -> $HOME_NET 3306 (msg:"MySQL Brute Force - Multiple login attempts"; flow:to_server,established; detection_filter:track by_src, count 10, seconds 60; threshold:type limit, track by_src, count 1, seconds 300; classtype:attempted-admin; sid:1000016; rev:1;)
+
+# PostgreSQL Brute Force
+alert tcp $EXTERNAL_NET any -> $HOME_NET 5432 (msg:"PostgreSQL Brute Force - Multiple login attempts"; flow:to_server,established; detection_filter:track by_src, count 10, seconds 60; threshold:type limit, track by_src, count 1, seconds 300; classtype:attempted-admin; sid:1000017; rev:1;)
+
+# SMTP Auth Brute Force
+alert tcp $EXTERNAL_NET any -> $HOME_NET 25 (msg:"SMTP Auth Brute Force"; flow:to_server,established; content:"AUTH "; offset:0; depth:5; detection_filter:track by_src, count 5, seconds 60; threshold:type limit, track by_src, count 1, seconds 300; classtype:attempted-admin; sid:1000018; rev:1;)
+
+# POP3 Brute Force
+alert tcp $EXTERNAL_NET any -> $HOME_NET 110 (msg:"POP3 Brute Force - Multiple USER commands"; flow:to_server,established; content:"USER "; offset:0; depth:5; detection_filter:track by_src, count 5, seconds 60; threshold:type limit, track by_src, count 1, seconds 300; classtype:attempted-admin; sid:1000019; rev:1;)
+
+# IMAP Brute Force
+alert tcp $EXTERNAL_NET any -> $HOME_NET 143 (msg:"IMAP Brute Force - Multiple login attempts"; flow:to_server,established; content:" LOGIN "; detection_filter:track by_src, count 5, seconds 60; threshold:type limit, track by_src, count 1, seconds 300; classtype:attempted-admin; sid:1000020; rev:1;)
+
+# SNMP Brute Force
+alert udp $EXTERNAL_NET any -> $HOME_NET 161 (msg:"SNMP Community String Brute Force"; content:"|30|"; offset:0; depth:1; detection_filter:track by_src, count 10, seconds 60; threshold:type limit, track by_src, count 1, seconds 300; classtype:attempted-recon; sid:1000021; rev:1;)
+
+# DNS Brute Force (subdomain enumeration)
+alert udp $EXTERNAL_NET any -> $HOME_NET 53 (msg:"DNS Brute Force - Subdomain enumeration"; detection_filter:track by_src, count 50, seconds 60; threshold:type limit, track by_src, count 1, seconds 60; classtype:attempted-recon; sid:1000022; rev:1;)
+
+# Generic failed authentication patterns
+alert tcp any any -> any any (msg:"Generic Authentication Failure Pattern"; flow:established; content:"authentication failed"; nocase; detection_filter:track by_src, count 5, seconds 60; classtype:attempted-admin; sid:1000023; rev:1;)
+
+alert tcp any any -> any any (msg:"Generic Login Failed Pattern"; flow:established; content:"login failed"; nocase; detection_filter:track by_src, count 5, seconds 60; classtype:attempted-admin; sid:1000024; rev:1;)
+
+alert tcp any any -> any any (msg:"Generic Access Denied Pattern"; flow:established; content:"access denied"; nocase; detection_filter:track by_src, count 5, seconds 60; classtype:attempted-admin; sid:1000025; rev:1;)

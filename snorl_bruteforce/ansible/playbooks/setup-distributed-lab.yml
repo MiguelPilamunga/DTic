@@ -1,0 +1,159 @@
+---
+- name: "Configurar Laboratorio de Ataques Distribuidos"
+  hosts: all
+  become: yes
+  gather_facts: yes
+  
+  tasks:
+    - name: "Actualizar repositorios del sistema"
+      package:
+        update_cache: yes
+      when: ansible_os_family == "Debian"
+      
+    - name: "Instalar paquetes base"
+      package:
+        name:
+          - curl
+          - wget
+          - net-tools
+          - htop
+          - vim
+          - git
+        state: present
+
+- name: "Configurar Nodos Atacantes"
+  hosts: attackers
+  become: yes
+  vars:
+    log_dir: "/var/log/distributed-attack"
+    
+  tasks:
+    - name: "Instalar herramientas de ataque"
+      package:
+        name: "{{ attack_tools }}"
+        state: present
+      
+    - name: "Crear directorio de logs"
+      file:
+        path: "{{ log_dir }}"
+        state: directory
+        mode: '0755'
+        
+    - name: "Generar listas de credenciales"
+      template:
+        src: "{{ item.src }}"
+        dest: "{{ item.dest }}"
+        mode: '0644'
+      loop:
+        - { src: 'usernames.txt.j2', dest: '/opt/usernames.txt' }
+        - { src: 'passwords.txt.j2', dest: '/opt/passwords.txt' }
+        - { src: 'ftp_users.txt.j2', dest: '/opt/ftp_users.txt' }
+        - { src: 'ftp_passwords.txt.j2', dest: '/opt/ftp_passwords.txt' }
+        
+    - name: "Instalar script de coordinación"
+      template:
+        src: "attack_coordinator.py.j2"
+        dest: "/opt/attack_coordinator.py"
+        mode: '0755'
+        
+    - name: "Crear configuración de nodo"
+      template:
+        src: "node_config.json.j2"
+        dest: "/opt/node_config.json"
+        mode: '0644'
+        
+    - name: "Instalar servicio de ataque distribuido"
+      template:
+        src: "distributed-attack.service.j2"
+        dest: "/etc/systemd/system/distributed-attack.service"
+        mode: '0644'
+      notify: reload systemd
+
+- name: "Configurar Objetivo"
+  hosts: targets
+  become: yes
+  
+  tasks:
+    - name: "Configurar SSH vulnerable"
+      lineinfile:
+        path: /etc/ssh/sshd_config
+        line: "{{ item }}"
+        state: present
+      loop:
+        - "PasswordAuthentication yes"
+        - "PermitRootLogin yes"
+        - "MaxAuthTries 6"
+        - "LoginGraceTime 30"
+      notify: restart ssh
+      
+    - name: "Instalar vsftpd"
+      package:
+        name: vsftpd
+        state: present
+        
+    - name: "Configurar FTP vulnerable"
+      copy:
+        src: "{{ playbook_dir }}/../templates/vsftpd_vulnerable.conf"
+        dest: "/etc/vsftpd.conf"
+        backup: yes
+      notify: restart vsftpd
+      
+    - name: "Crear usuarios de prueba"
+      user:
+        name: "{{ item }}"
+        password: "{{ item | password_hash('sha512') }}"
+        state: present
+      loop: "{{ common_credentials.usernames[:5] }}"
+
+- name: "Configurar Monitor Snort"
+  hosts: monitors
+  become: yes
+  
+  tasks:
+    - name: "Instalar Snort y dependencias"
+      package:
+        name:
+          - snort
+          - tcpdump
+          - wireshark-cli
+        state: present
+        
+    - name: "Configurar reglas de detección distribuida"
+      template:
+        src: "distributed-attack.rules.j2"
+        dest: "/etc/snort/rules/distributed-attack.rules"
+        mode: '0644'
+        
+    - name: "Actualizar configuración de Snort"
+      template:
+        src: "snort-distributed.conf.j2"
+        dest: "/etc/snort/snort.conf"
+        backup: yes
+        
+    - name: "Crear script de monitoreo"
+      template:
+        src: "monitor_distributed.py.j2"
+        dest: "/opt/monitor_distributed.py"
+        mode: '0755'
+        
+    - name: "Configurar servicio de monitoreo"
+      template:
+        src: "snort-monitor.service.j2"
+        dest: "/etc/systemd/system/snort-monitor.service"
+        mode: '0644'
+      notify: reload systemd
+
+  handlers:
+    - name: reload systemd
+      systemd:
+        daemon_reload: yes
+        
+    - name: restart ssh
+      service:
+        name: ssh
+        state: restarted
+        
+    - name: restart vsftpd
+      service:
+        name: vsftpd
+        state: restarted

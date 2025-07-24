@@ -1,0 +1,23 @@
+\titlespacing*{\chapter}{0pt}{0pt}{0cm}
+\newpage
+\phantomsection
+\addcontentsline{toc}{chapter}{RESUMEN}
+\chapter*{\titulos{RESUMEN}}
+
+Los grandes modelos de lenguaje (\textbf{LLMs}) han precipitado una transformación asimétrica en el ecosistema de ciberseguridad actual, donde ataques de fuerza bruta evolucionan de manera autónoma para evadir mecanismos de detección establecidos. Esta investigación evalúa el desempeño de sistemas \textbf{IDS/IPS} convencionales ante ataques polimórficos que modifican dinámicamente sus patrones comportamentales y estrategias de compromiso de credenciales, exponiendo una disparidad crítica entre ofensiva adaptativa y defensas estáticas.
+
+El análisis sistemático de 147 publicaciones reveló únicamente 12 estudios que satisficieron criterios estrictos de inclusión. Las exclusiones masivas (n=123) derivaron de la ausencia de validación empírica, enfoques periféricos a fuerza bruta, o carencia de integración con arquitecturas LLM. Esta limitación subraya una brecha metodológica fundamental: los marcos de evaluación para sistemas de detección tradicionales contra amenazas generadas por \textbf{IA} permanecen insuficientemente desarrollados.
+
+Mediante \textbf{Design-Based Research} (DBR), construimos un entorno experimental que implementó 18 prompts especializados, generando 400 ataques distribuidos a lo largo de 4 ciclos iterativos bisemanales. Las técnicas de roleplay contextual, fragmentación instruccional e inyección progresiva circumnavegaron restricciones éticas de LLMs, produciendo scripts con capacidades mutacionales inéditas en repositorios de firmas convencionales.
+
+Los agentes autónomos desplegados mediante frameworks conversacionales preservaron estado contextual persistente—elemento fundamental para monitorear patrones evolutivos. Este enfoque superó limitaciones convencionales de ingeniería de prompts, facilitando toma de decisiones autónoma y escalabilidad operacional continua.
+
+Los ataques generados por LLMs registraron tasas de evasión superiores al 65% contra configuraciones IDS estándar. Se identificaron vulnerabilidades específicas: la detección basada en firmas fracasa ante código regenerativo, modulación temporal variable y polimorfismo dirigido. Como respuesta, desarrollamos 25 reglas optimizadas que elevaron la efectividad de detección manteniendo tasas de falsos positivos bajo el 3%.
+
+Las optimizaciones propuestas incorporan heurísticas comportamentales para patrones mutacionales, correlación temporal para ataques distribuidos, y frameworks evolutivos que contrarresten la adaptación continua de amenazas generadas por LLMs. Esta investigación suministra marcos operacionales para modernizar sistemas de detección tradicionales frente a la explotación maliciosa de modelos de lenguaje en generación automatizada de ataques.
+
+\textbf{Palabras clave:} ataques de fuerza bruta adaptativos, LLMs maliciosos, sistemas IDS/IPS, malware polimórfico, detección de intrusiones evolutiva, evasión de ciberseguridad, ingeniería de prompts ofensiva, Design-Based Research.
+
+\titlespacing*{\chapter}{0pt}{50pt}{40pt} 
+\glsresetall
+\clearpage

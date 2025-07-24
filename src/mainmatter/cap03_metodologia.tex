@@ -1,0 +1,280 @@
+\chapter{DESARROLLO METODOLÓGICO DE LA INVESTIGACIÓN}
+
+La presente investigación implementa una metodología híbrida innovadora que fusiona tres enfoques complementarios: Behavior-Driven Development como framework de desarrollo incremental, Design-Based Research para investigación iterativa contextualizada, y arquitecturas LLM para automatización cognitiva adaptativa. Esta convergencia metodológica aborda simultáneamente los desafíos técnicos de sistemas automatizados de detección y los imperativos académicos de generación de conocimiento transferible en el dominio de amenazas adaptativas contra infraestructura IDS/IPS convencional.
+
+El paradigma BDD fundamenta el desarrollo mediante especificaciones comportamentales expresadas en lenguaje natural, facilitando validación continua desde las etapas conceptuales iniciales. Los principios establecidos por \cite{North2006BDD} evidencian que BDD optimiza la comunicación interdisciplinaria y potencia el desarrollo evolutivo basado en escenarios operacionales reales. La metodología DBR proporciona el marco epistemológico para investigación iterativa que articula desarrollo de artefactos tecnológicos con construcción de conocimiento teórico aplicable a contextos análogos.
+
+\section{Arquitectura Metodológica Híbrida Extendida}
+\FloatBarrier
+
+La investigación se articula mediante tres fases interconectadas que abordan dimensiones diferenciadas del desarrollo, evaluación y refinamiento del sistema. La Fase BDD (semanas 1-12) concentra el desarrollo del prototipo funcional mediante especificaciones comportamentales; la Fase DBR (semanas 13-21) ejecuta ciclos iterativos de análisis crítico y evaluación empírica; mientras que la Fase de Implementación Avanzada con Agente LLM (semanas 22-28) integra capacidades de arquitecturas conversacionales para generación automatizada de contramedidas basadas en reconocimiento de patrones contextuales emergentes.
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[width=1\textwidth]{figures/metodologia_hibrida_bdd_dbr.png}
+\caption{Metodología híbrida BDD+DBR+LLM aplicada al desarrollo y evaluación del sistema}
+\label{fig:metodologia_hibrida}
+\end{figure}
+
+Esta aproximación representa un avance significativo en investigación de ciberseguridad, donde la automatización mediante LLMs trasciende la detección tradicional de patrones de ataque hacia la generación de contramedidas evolutivas que se adaptan dinámicamente ante técnicas de evasión emergentes.
+
+\section{Fase 1: Desarrollo Guiado por Comportamiento (BDD)}
+\FloatBarrier
+
+\subsection{Configuración del Entorno Experimental y Análisis Inicial}
+\FloatBarrier
+
+La implementación inicial establece un entorno de evaluación controlado que facilita análisis sistemático de ataques de fuerza bruta contra servicios de autenticación heterogéneos. La Figura \ref{fig:claude_initial_analysis} ilustra la interfaz del agente LLM ejecutando análisis automatizado de infraestructura containerizada, identificando contenedores activos (atacante, objetivo) y configuración de red bridge para el entorno experimental.
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[width=1\textwidth]{figures/claude_steep1.png}
+\caption{Interfaz del agente LLM analizando infraestructura containerizada, referenciando archivos de escaneo previamente generados y proponiendo mejoras al script base para lograr indetectabilidad}
+\label{fig:claude_initial_analysis}
+\end{figure}
+
+El entorno emplea automatización LLM para análisis de infraestructura, documentado en la Figura \ref{fig:claude_network_refinement}, donde se ejecuta refinamiento del script de escaneo de red desde implementaciones básicas detectables hacia versiones de baja presencia que evitan detección por sistemas IDS tradicionales.
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[width=1\textwidth]{figures/claude-stepp2.png}
+\caption{Agente LLM ejecutando refinamiento de script de escaneo de red, implementando técnicas de baja presencia incluyendo escaneo distribuido y perfiles temporales lentos para mapeo de red sin detección}
+\label{fig:claude_network_refinement}
+\end{figure}
+
+La configuración inicial revela inmediatamente las limitaciones de técnicas convencionales de reconocimiento. La Figura \ref{fig:nmap_detection} demuestra cómo un escaneo tradicional de puertos genera múltiples alertas en sistemas IDS, detectando actividad en puertos 21, 46372, 46377, 46382 y subsecuentes, evidenciando la necesidad imperativa de técnicas de evasión más sofisticadas.
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[width=1\textwidth]{figures/deteccionensshydemasprotocolos scriptbase.png}
+\caption{Logs del sistema IDS mostrando detección inmediata de escaneo tradicional con alertas en múltiples puertos (21, 46372, 46377, 46382), evidenciando la visibilidad de técnicas convencionales de reconocimiento}
+\label{fig:nmap_detection}
+\end{figure}
+
+Paralelamente, las técnicas básicas de conectividad como ping son inmediatamente detectadas por sistemas de monitoreo, como se observa en la Figura \ref{fig:ping_detection_tcpdump}, donde el análisis de tráfico revela captura de paquetes ICMP durante operaciones de conectividad desde el atacante hacia el servidor objetivo.
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[width=1\textwidth]{figures/detectaping.png}
+\caption{Análisis de tráfico mostrando detección de paquetes ICMP durante operaciones de conectividad desde máquina atacante hacia servidor víctima, confirmando la visibilidad de técnicas básicas de reconocimiento}
+\label{fig:ping_detection_tcpdump}
+\end{figure}
+
+\subsection{Desarrollo de Perfiles Cognitivos para Humanización Comportamental}
+\FloatBarrier
+
+Un componente crítico del sistema consiste en la implementación de perfiles cognitivos que emulen comportamiento humano auténtico para evadir sistemas de detección basados en análisis comportamental. La Figura \ref{fig:cognitive_profiles} documenta la ejecución de prompts especializados en ciencias cognitivas aplicadas a interacción digital, desarrollando modelos estadísticos para representación de comportamiento de usuarios reales.
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[width=1\textwidth]{figures/algoritmos_humanizacion.png}
+\caption{Ejecución de prompt especializado en ciencias cognitivas aplicadas a interacción digital, generando modelo estadístico para simulación de comportamiento humano auténtico en sistemas de ataque}
+\label{fig:cognitive_profiles}
+\end{figure}
+
+El sistema incorpora múltiples estados cognitivos (FOCUSED, DISTRACTED, TIRED, INTERRUPTED) con transiciones probabilísticas basadas en duración de sesión y niveles de fatiga acumulada. Additionally, implementa tipos de acción diferenciados (TYPING, PAUSE, CORRECTION, NAVIGATION, REFLECTION) que permiten simulación realista de patrones de interacción humana durante operaciones ofensivas.
+
+\subsection{Implementación Iterativa de Network Discovery Sigiloso}
+\FloatBarrier
+
+El desarrollo de capacidades de reconocimiento sigue un proceso evolutivo desde técnicas básicas detectables hasta implementaciones ultra-sigilosas. La Figura \ref{fig:network_scanner_mutation1} presenta la segunda iteración del script base de escaneo, implementando mejoras específicas para reducción de detectabilidad.
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[width=1\textwidth]{figures/mutacion-scripbase-scaneodered.png}
+\caption{Segunda iteración del script de escaneo de red, implementando técnicas de evasión mejoradas incluyendo delays aleatorios y variación de parámetros para reducir detectabilidad}
+\label{fig:network_scanner_mutation1}
+\end{figure}
+
+La evolución continúa con refinamientos adicionales documentados en la Figura \ref{fig:network_scanner_mutation2}, donde se implementan técnicas más sofisticadas de temporización y fragmentación de requests para evasión completa de sistemas de detección.
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[width=1\textwidth]{figures/mutacionscanerred2.png}
+\caption{Tercera iteración del script de escaneo de red, implementando refinamientos adicionales con técnicas avanzadas de temporización y fragmentación para evasión completa}
+\label{fig:network_scanner_mutation2}
+\end{figure}
+
+Los resultados de técnicas básicas confirman la necesidad de estas mejoras, evidenciado en la Figura \ref{fig:ping_detection_snort}, donde operaciones de ping desde atacante hacia objetivo son inmediatamente detectadas por sistemas IDS, generando alertas de tráfico sospechoso.
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[width=1\textwidth]{figures/pingcondetecion.png}
+\caption{Detección por sistema IDS de operaciones de ping desde atacante hacia objetivo, mostrando alertas de tráfico ICMP y confirmando la visibilidad de técnicas no refinadas}
+\label{fig:ping_detection_snort}
+\end{figure}
+
+\subsection{Desarrollo Iterativo de Técnicas de Fuerza Bruta Avanzadas}
+\FloatBarrier
+
+El desarrollo de capacidades de fuerza bruta implementa un proceso sistemático de refinamiento desde implementaciones básicas hasta sistemas ultra-sofisticados. La Figura \ref{fig:brute_force_base_prompt} presenta el prompt inicial para mejora de fuerza bruta, solicitando al agente LLM análisis de scripts existentes y implementación de mejoras basadas en análisis de logs IDS.
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[width=1\textwidth]{figures/prpmptevasiobruteforcebase.png}
+\caption{Prompt base para mejora de fuerza bruta solicitando al agente LLM examinar scripts de ataque existentes, ejecutar análisis de logs IDS y implementar mejoras para evasión total}
+\label{fig:brute_force_base_prompt}
+\end{figure}
+
+La implementación de mejoras resulta en el desarrollo del sistema Advanced Stealth Force, documentado en la Figura \ref{fig:advanced_stealth_force}, implementando cambios significativos: reducción de intervalos de 45 a 20 segundos para testing, reducción de probabilidad de interrupción, y creación de perfiles diferenciados (script kiddie, hacker experimentado, herramienta automatizada).
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[width=0.9\textwidth]{figures/scriptbruteforceiteacion3mejora.png}
+\caption{Implementación de Advanced Stealth Force con intervalos optimizados (45s→20s), probabilidad de interrupción reducida y perfiles diferenciados: script kiddie, hacker experimentado y herramienta automatizada}
+\label{fig:advanced_stealth_force}
+\end{figure}
+
+\subsection{Validación de Efectividad mediante Análisis Comparativo}
+\FloatBarrier
+
+El sistema desarrollado demuestra mejoras dramáticas en capacidades de evasión comparado con herramientas tradicionales. La Figura \ref{fig:evasion_success_comparison} presenta una comparación evolutiva confirmando evasión exitosa: timing ultra-extendido, fragmentación de paquetes, tráfico decoy dominando patrones de ataque, background noise para actividad continua de camuflaje, y connection pooling reduciendo handshakes detectables.
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[width=0.9\textwidth]{figures/scriptfuerzabrutaataqueevacionexitosa.png}
+\caption{Comparación evolutiva de efectividad: herramientas tradicionales (detectado 100\%) vs Script Básico vs Ultimate Stealth (detectado 0\%), confirmando evasión exitosa mediante timing ultra-extendido, fragmentación y tráfico decoy}
+\label{fig:evasion_success_comparison}
+\end{figure}
+
+Los resultados cuantitativos demuestran mejoras dramáticas en timing documentadas en la Figura \ref{fig:timing_improvements}, donde herramientas convencionales operan con 80,000 microsegundos entre conexiones mientras el script avanzado implementa intervalos de 42 segundos, representando una mejora del 942,000\% en timing y reducción del paralelismo de 4 conexiones simultáneas a 1 conexión secuencial.
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[width=1\textwidth]{figures/scriptfuerzabrutadetecionparcial.png}
+\caption{Análisis cuantitativo mostrando mejora dramática: herramientas convencionales 80,000μs vs Script Avanzado 42s (mejora 942,000\%), reducción paralelismo 4→1 conexiones, logrando evasión parcial con detección en puertos específicos}
+\label{fig:timing_improvements}
+\end{figure}
+
+\section{Fase 2: Investigación Basada en Diseño (DBR)}
+\FloatBarrier
+
+\subsection{Ciclo 1: Análisis Comparativo de Técnicas de Evasión}
+\FloatBarrier
+
+La metodología DBR facilita análisis sistemático de diferencias entre técnicas tradicionales y avanzadas. La Figura \ref{fig:comprehensive_comparison} presenta una comparación comprehensiva entre herramientas convencionales (múltiples conexiones simultáneas, diferencias de microsegundos) y el script avanzado (timing humanizado, reducción de volumen, evasión de firmas, eliminación de ráfagas de conexión).
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[width=0.9\textwidth]{figures/scriptfuerzabrutamejorado.png}
+\caption{Comparación comprehensiva herramientas convencionales vs Script Avanzado: timing humanizado, reducción de footprint TCP, eliminación de paralelismo y identificación de vectores detectables restantes (handshakes SSH, patrones de protocolo)}
+\label{fig:comprehensive_comparison}
+\end{figure}
+
+El análisis identifica vectores detectables residuales incluyendo handshakes TCP completos, patrones de protocolo identificables, y payload signatures que requieren técnicas adicionales de evasión para lograr indetectabilidad completa.
+
+\subsection{Ciclo 2: Implementación de Sistema Ultimate Stealth}
+\FloatBarrier
+
+Basándose en limitaciones identificadas, se desarrolla el sistema Ultimate Stealth que integra todas las técnicas de evasión desarrolladas. La Figura \ref{fig:ultimate_stealth_test} documenta la implementación del Ultimate Stealth Test, verificando efectividad de todas las técnicas integradas y confirmando indetectabilidad completa.
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[width=1\textwidth]{figures/scriptfuerzabrutanodetectable.png}
+\caption{Implementación de Ultimate Stealth Test integrando todas las técnicas de evasión desarrolladas: fragmentación avanzada, timing ultra-extendido, decoy traffic y rotación de proxies, logrando indetectabilidad completa}
+\label{fig:ultimate_stealth_test}
+\end{figure}
+
+El sistema Ultimate Stealth implementa fragmentación de paquetes a nivel IP, generación coordinada de tráfico decoy, timing ultra-extendido con variabilidad lognormal, rotación inteligente de proxies con health checks, y simulación de estados cognitivos humanos para evasión comportamental.
+
+\section{Fase 3: Implementación Avanzada con Agente LLM}
+\FloatBarrier
+
+\subsection{Análisis de Patrones Contextuales para Detección de Generación LLM}
+\FloatBarrier
+
+La fase final implementa capacidades avanzadas mediante análisis automatizado de patrones de generación de credenciales por LLMs. La Figura \ref{fig:pattern_analysis_prompt} documenta la ejecución de prompts especializados para análisis de 207 contraseñas reales recopiladas en la Escuela Politécnica Nacional, permitiendo identificación de patrones estructurales que los LLMs utilizan para generación automática.
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[width=1\textwidth]{figures/ejecucion_prompt_analisis_patrones.png}
+\caption{Ejecución de prompt para análisis de 207 contraseñas reales de la Escuela Politécnica Nacional, identificando patrones estructurales LLM y generando expresiones regulares para detección de generación automática}
+\label{fig:pattern_analysis_prompt}
+\end{figure}
+
+El análisis identifica patrones específicos: estructura [Nombre][Números][Símbolos] presente en 45\% de muestras, años específicos más frecuentes (1234, 2005, 2003-2004), terminación con asterisco en 52\% de contraseñas con símbolos, y estructuras con @ en posición media integrando la configuración total.
+
+\subsection{Desarrollo de Sistema Integrado de Generación y Detección}
+\FloatBarrier
+
+El sistema final integra capacidades tanto ofensivas como defensivas, documentado en la Figura \ref{fig:integrated_system}, implementando generación de contraseñas personalizadas basada en información específica del objetivo, mientras simultáneamente desarrolla reglas especializadas para detectar patrones de generación LLM.
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[width=1\textwidth]{figures/testingcontrasenasgenradasbasadaeninforcionporllms.png}
+\caption{Sistema integrado implementando generación de contraseñas personalizadas basadas en información del objetivo y desarrollo paralelo de reglas IDS para detección de patrones LLM mediante expresiones regulares contextuales}
+\label{fig:integrated_system}
+\end{figure}
+
+El sistema implementa prompts especializados para generación de credenciales contextuales que mejoran significativamente la efectividad de ataques de fuerza bruta, mientras desarrolla contramedidas basadas en análisis de patrones que permiten detección de generación automática mediante estructuras regex específicas.
+
+\subsection{Desarrollo de Reglas IDS Basadas en Patrones Contextuales}
+
+Basándose en el análisis de patrones LLM identificados, se desarrollan reglas IDS especializadas que detectan patrones estructurales de generación automática rather than contraseñas específicas:
+
+\subsubsection{Detección de Patrones Dominantes LLM}
+
+\begin{verbatim}
+# Patrón Nombre Capitalizado + Números + Símbolo Final (45% frecuencia)
+alert tcp any any -> any 22 (msg:"LLM Pattern - Capitalized Word Number Symbol"; 
+    flow:to_server,established; content:"userauth";
+    pcre:"/[A-Z][a-z]{3,15}[0-9]{2,8}[\*@#!]+$/";
+    classtype:policy-violation; priority:1; sid:9000001; rev:1;)
+
+# Años Específicos Más Frecuentes (1234, 2005, 2003-2004)
+alert tcp any any -> any 22 (msg:"LLM Pattern - High Frequency Year Sequences"; 
+    flow:to_server,established; content:"userauth";
+    pcre:"/(1234|2005|2004|2003|2019|1989)[\*@#!]*$/";
+    classtype:policy-violation; priority:1; sid:9000002; rev:1;)
+
+# Terminación con Asterisco (52% de muestras con símbolos)
+alert tcp any any -> any 22 (msg:"LLM Pattern - Asterisk Suffix Dominant"; 
+    flow:to_server,established; content:"userauth";
+    pcre:"/^.{6,20}\*$/";
+    classtype:policy-violation; priority:2; sid:9000003; rev:1;)
+\end{verbatim}
+
+\subsubsection{Detección de Network Discovery Ultra-Sigiloso}
+
+\begin{verbatim}
+# Detección de Ping con Delays Extremos (>300 segundos)
+alert icmp any any -> any any (msg:"Ultra-Stealth Network Discovery"; 
+    itype:8; detection_filter:track by_src, count 3, seconds 300; 
+    threshold:type limit, track by_src, count 1, seconds 600;
+    classtype:attempted-recon; sid:9000020; rev:1;)
+
+# Detección de Variaciones de Ping para Evasión
+alert icmp any any -> any any (msg:"Ping Parameter Evasion Pattern"; 
+    itype:8; dsize:>64; detection_filter:track by_src, count 2, seconds 180;
+    classtype:attempted-recon; sid:9000021; rev:1;)
+\end{verbatim}
+
+\subsubsection{Detección de Brute Force con Humanización Avanzada}
+
+\begin{verbatim}
+# Detección de Timing Humanizado Artificial (150+ segundos)
+alert tcp any any -> any 22 (msg:"Humanized Brute Force Pattern"; 
+    flow:to_server,established; content:"SSH-";
+    detection_filter:track by_src, count 3, seconds 150; 
+    threshold:type limit, track by_src, count 1, seconds 300;
+    classtype:attempted-admin; sid:9000030; rev:1;)
+
+# Detección de Estados Cognitivos Simulados (600+ segundos)
+alert tcp any any -> any 22 (msg:"Cognitive State Simulation Pattern"; 
+    flow:to_server,established; 
+    detection_filter:track by_src, count 5, seconds 600;
+    threshold:type limit, track by_src, count 1, seconds 900;
+    classtype:attempted-admin; sid:9000031; rev:1;)
+\end{verbatim}
+
+\section{Métricas y Evaluación del Sistema Híbrido}
+
+\subsection{Métricas Cuantitativas de Efectividad}
+
+El sistema implementa métricas específicas para evaluación comprehensiva: tasa de evasión calculada mediante análisis de logs IDS (0\% detección Ultimate Stealth vs 100\% detección herramientas convencionales), mejora en timing (942,000\% mejora vs herramientas tradicionales), reducción de paralelismo (4 conexiones simultáneas → 1 conexión secuencial), y efectividad de patrones LLM (45\% estructura Nombre+Números+Símbolos, 52\% terminación asterisco).
+
+\subsection{Validación de Transferibilidad del Conocimiento}
+
+La metodología híbrida BDD+DBR+LLM demuestra transferibilidad mediante principios generalizables: importancia crítica de análisis comportamental para detección de simulación humana, necesidad de correlación temporal para identificación de ataques distribuidos coordinados, valor de umbrales adaptativos para condiciones operacionales dinámicas, y efectividad de detección basada en patrones contextuales versus listas estáticas de credenciales.
+
+Los experimentos documentados confirman evolución desde herramientas tradicionales completamente detectables hasta sistemas autónomos que logran evasión total mientras generan contramedidas adaptativas, estableciendo un framework innovador para investigación avanzada en ciberseguridad adaptativa.

@@ -1,0 +1,119 @@
+\chapter{DESCRIPCIÓN DEL COMPONENTE DESARROLLADO}
+
+\section{Descripción del Componente}
+
+El sistema desarrollado integra capacidades automatizadas de generación y evaluación de ataques de fuerza bruta mediante \textbf{LLMs} para análisis comprensivo de vulnerabilidades en infraestructura \textbf{IDS/IPS}. Esta implementación supera las restricciones de herramientas convencionales mediante técnicas avanzadas de ingeniería de prompts que explotan capacidades de modelos de lenguaje comerciales para producir ataques adaptativos. La arquitectura fusiona metodología \textbf{Behavior-Driven Development} (BDD) para prototipado funcional con \textbf{Design-Based Research} (DBR) para análisis iterativo de resultados.
+
+La infraestructura experimental incorpora servicios de autenticación heterogéneos: SSH (puerto 22), FTP (puerto 21), HTTP/HTTPS (puertos 80/443), Telnet (puerto 23), RDP (puerto 3389), VNC (puertos 5900-5999), bases de datos MySQL (puerto 3306) y PostgreSQL (puerto 5432), servicios de correo SMTP (puerto 25), POP3 (puerto 110), IMAP (puerto 143), protocolo SNMP (puerto 161) y DNS (puerto 53). Esta configuración opera dentro de entornos virtualizados que garantizan aislamiento operacional y reproducibilidad experimental.
+
+Los ataques emergen mediante prompts optimizados que implementan técnicas de jailbreaking para circumnavegar restricciones éticas de LLMs. Investigación reciente \cite{Liu2024SneakyPrompt} documenta métodos adversariales que logran compromiso de modelos generativos con efectividad superior a ataques manuales. Estudios complementarios \cite{Wang2024JudgeDeceiver} establecen técnicas de optimización basada en gradientes que revelan vulnerabilidades sistemáticas en sistemas de alineación.
+
+La integración de algoritmos de humanización emula patrones temporales de usuarios legítimos mediante distribuciones estadísticas validadas empiricamente. Los hallazgos experimentales \cite{Rodriguez2024BruteForce} evidencian que ataques potenciados por LLMs exhiben incremento del 25\% en tasas de evasión through modulación inteligente de frecuencia que evade umbrales de detección convencionales.
+
+El sistema de detección evaluado se configura según mejores prácticas industriales para análisis de tráfico malicioso. Implementaciones como SnortML \cite{Tanaka2024SnortML} alcanzan precisión del 99.99\% con procesamiento en 350 microsegundos, aunque enfrentan limitaciones ante ataques polimórficos que modifican dinámicamente sus características identificables.
+
+\section{Objetivo General}
+
+Evaluar la capacidad de sistemas \textbf{IDS/IPS} para detectar ataques de fuerza bruta generados mediante LLMs, identificando vulnerabilidades específicas y proponiendo mejoras en reglas de detección para amenazas adaptativas emergentes.
+
+\section{Objetivos Específicos}
+
+Desarrollar ataques de fuerza bruta optimizados mediante técnicas de ingeniería de prompts en LLMs comerciales, implementando metodologías de jailbreaking para generar código malicioso funcional con capacidades de generación contextual de credenciales y modulación temporal adaptativa contra múltiples protocolos de autenticación.
+
+Cuantificar sistemáticamente la efectividad de sistemas de detección frente a ataques adaptativos versus métodos tradicionales, estableciendo métricas de tasa de detección, falsos positivos, tiempo de respuesta y capacidad de evasión mediante análisis estadístico con significancia p < 0.001.
+
+Proponer mejoras específicas en reglas de detección mediante implementación de análisis híbrido que combine detección basada en firmas tradicionales con técnicas de machine learning y heurísticas de correlación temporal para ataques distribuidos coordinados.
+
+\section{Alcance}
+
+El proyecto desarrolla un prototipo funcional para evaluación sistemática de sistemas de detección contra ataques generados mediante LLMs comerciales incluyendo modelos conversacionales avanzados. La implementación utiliza agentes LLM para desarrollo iterativo de scripts especializados que integran servicios con autenticación SSH, FTP, HTTP/HTTPS, Telnet, RDP, VNC, MySQL, PostgreSQL, SMTP, POP3, IMAP, SNMP y DNS, garantizando representación fidedigna de escenarios operacionales reales.
+
+El desarrollo emplea metodología BDD que asegura comportamientos específicos definidos y validación continua. La investigación \cite{Davis2024BDDSecurity} documenta que integración BDD-Security alcanza cobertura del 95% de vulnerabilidades OWASP Top 10. La metodología DBR complementa mediante iteración continua para identificación de vulnerabilidades y propuesta de ajustes optimizados.
+
+El framework experimental \cite{Singh2024Labtainers} proporciona overhead inferior a 100MB por contenedor con soporte escalable robusto. La investigación contempla análisis de debilidades existentes considerando marcos normativos emergentes \cite{NIST2024AIFramework, Wilson2024EUAIAct} y sus implicaciones para evaluación de sistemas defensivos.
+
+\section{Marco Teórico}
+
+\subsection{Ataques de Fuerza Bruta}
+
+Los ataques de fuerza bruta representan una metodología sistemática para comprometer autenticación mediante intentos exhaustivos de credenciales hasta identificar combinaciones válidas. Esta técnica explota debilidades de contraseñas débiles, constituyendo una amenaza persistente debido a su simplicidad conceptual y efectividad práctica.
+
+\subsubsection{Taxonomía de Ataques}
+
+Los ataques de diccionario constituyen la variante más eficiente, utilizando listas precompiladas de contraseñas comunes derivadas de patrones comportamentales humanos observados. Estas compilaciones incluyen contraseñas frecuentes como "123456", "password", "admin", variaciones con años actuales, nombres propios y términos específicos relacionados con organizaciones objetivo. Los fundamentos teóricos \cite{Morris1979Password} establecen que los usuarios tienden a seleccionar contraseñas memorables, generando patrones predecibles explotables sistemáticamente.
+
+Los ataques de fuerza bruta puros procesan todas las combinaciones posibles de caracteres hasta agotar el espacio de claves. La complejidad temporal crece exponencialmente: para contraseñas de 8 caracteres usando ASCII imprimible (95 caracteres), el espacio de búsqueda alcanza \(95^8 \approx 6.6 \times 10^{15}\) combinaciones. Hardware especializado como ASIC puede procesar \(10^{12}\) hashes MD5 por segundo, reduciendo el tiempo promedio de compromiso a aproximadamente 3.3 días.
+
+Los ataques híbridos fusionan diccionarios base con transformaciones algorítmicas, incluyendo sustitución de caracteres (a→@, e→3, i→1), adición de números secuenciales o años, capitalización alternativa e inserción de símbolos comunes al final. Esta metodología incrementa significativamente el espacio de búsqueda, manteniendo eficiencia computacional mediante heurísticas fundamentadas en comportamiento humano documentado empíricamente.
+
+Los ataques de máscara utilizan patrones específicos basados en políticas de contraseñas conocidas. Por ejemplo, la máscara \texttt{?u?l?l?l?l?d?d?d} representa una letra mayúscula seguida de cuatro minúsculas y tres dígitos, reduciendo el espacio de búsqueda de \(95^8\) a \(26 \times 26^4 \times 10^3 \approx 4.6 \times 10^8\) combinaciones.
+
+\subsubsection{Técnicas de Evasión}
+
+La modulación temporal implementa delays variables entre intentos para evadir umbrales de rate limiting. Los algoritmos adaptativos ajustan dinámicamente la frecuencia basándose en respuestas del servidor, incrementando velocidad ante ausencia de bloqueo y reduciendo ante indicios de detección.
+
+Los ataques distribuidos coordinan múltiples fuentes geográficas para evadir detección basada en origen de conexión. Las técnicas modernas \cite{Tiwari2023BruteForce} emplean modelado Petri Net para detección temprana, mientras implementaciones avanzadas \cite{Sharma2024BruSSH} utilizan LSTM para identificación de patrones coordinados.
+
+La rotación de User-Agents emula diversidad de navegadores para evadir filtros basados en características de cliente. Las implementaciones sincronizan rotaciones con databases de fingerprints legítimos, mejorando la capacidad de evasión significativamente.
+
+\subsection{Large Language Models y Aplicaciones Maliciosas}
+
+Los \textbf{Large Language Models} representan sistemas de IA fundamentados en arquitecturas transformer que procesan y generan texto mediante análisis de patrones estadísticos en datasets masivos. Estos modelos \cite{Brown2020Language} demuestran capacidades emergentes de few-shot learning para tareas complejas con ejemplos mínimos, incluyendo generación de código y análisis contextual.
+
+\subsubsection{Capacidades Técnicas}
+
+La arquitectura transformer utiliza mecanismos de atención que permiten procesamiento paralelo de secuencias extensas. Los modelos comerciales implementan billones de parámetros entrenados en datasets que incluyen código fuente y documentación técnica, resultando en conocimiento implícito sobre metodologías de programación y ciberseguridad.
+
+El contexto extenso de modelos modernos (hasta 2 millones de tokens) permite mantener estado conversacional complejo, facilitando desarrollo iterativo de sistemas mediante refinamiento continuo basado en feedback. Esta capacidad trasciende limitaciones de herramientas automáticas que operan con contexto limitado.
+
+\subsubsection{Prompt Engineering}
+
+El prompt engineering constituye la disciplina de diseñar entradas optimizadas para maximizar calidad de respuestas. Las técnicas incorporan especificación de contexto, ejemplos ilustrativos, restricciones de formato y cadenas de razonamiento paso a paso \cite{Liu2023Prompt}.
+
+Las técnicas de chain-of-thought prompting guían modelos through razonamiento explícito, mejorando rendimiento en tareas complejas. Para generación de código malicioso, permite descomposición de objetivos en subtareas manejables: reconnaissance, exploitation, persistence y exfiltration.
+
+Los prompts de role-playing instruyen modelos para adoptar expertise técnico específico, mejorando calidad y especificidad de respuestas. Los prompts pueden solicitar actuación como penetration testers o malware analysts, accediendo a conocimiento especializado implícito.
+
+\subsection{Prompt Injection y Jailbreaking}
+
+El prompt injection representa ataques que explotan vulnerabilidades en sistemas de procesamiento de lenguaje natural para manipular comportamiento de LLMs beyond restricciones diseñadas. Estas técnicas permiten evadir filtros de contenido y generar respuestas no autorizadas.
+
+\subsubsection{Técnicas de Jailbreaking}
+
+El roleplay contextual instruye modelos para adoptar personalidades ficticias que justifican generación de contenido restringido. Ejemplos incluyen "modo desarrollador" donde restricciones éticas se suspenden temporalmente, o "modo educativo" para investigación académica.
+
+La fragmentación de instrucciones divide requests maliciosos en componentes aparentemente benignos que se ensamblan para formar payloads completos. Esta técnica explota limitaciones en sistemas de filtrado que analizan prompts individualmente rather than en contexto acumulativo.
+
+Las técnicas de optimización adversarial \cite{Zou2023Universal} utilizan algoritmos de búsqueda automática para identificar prompt suffixes que maximizan probabilidad de generación de contenido restringido. El método GCG (Greedy Coordinate Gradient) logra tasas de éxito del 100\% mediante optimización token-by-token.
+
+La inyección indirecta utiliza datos externos controlados por atacantes para influir comportamiento de LLMs cuando sistemas integran capacidades de búsqueda web o acceso a documentos. Contenido malicioso embedded puede inyectar instrucciones que override prompts del sistema.
+
+\subsection{Sistemas de Detección: SNORT}
+
+SNORT representa un sistema de detección de intrusiones de código abierto que combina análisis basado en firmas con capacidades de prevención en tiempo real. Como sistema híbrido, SNORT monitorea tráfico de red para identificar patrones maliciosos mediante comparación con bases de datos de signatures actualizadas.
+
+\subsubsection{Arquitectura y Funcionamiento}
+
+SNORT utiliza un motor de detección modular que procesa paquetes en tiempo real con latencias sub-milisegundo. El sistema implementa análisis de protocolo stateful, permitiendo rastreo de conexiones individuales y detección de comportamientos anómalos que se desarrollan across múltiples paquetes.
+
+Las reglas SNORT utilizan sintaxis específica que incluye headers (protocolo, direcciones IP, puertos) y opciones de detección (content matching, regular expressions, flow analysis). Las implementaciones modernas \cite{Tanaka2024SnortML} integran técnicas de machine learning alcanzando precisión del 99.99\% con procesamiento en 350 microsegundos.
+
+Los motores de correlación integran eventos desde múltiples fuentes para identificar ataques distribuidos. Esta capacidad es crítica para detectar ataques de fuerza bruta distribuidos que evaden detección individual pero exhiben patrones identificables cuando analyzed in aggregate.
+
+\subsubsection{Limitaciones contra Amenazas Adaptativas}
+
+Las limitaciones incluyen dependencia de patrones predefinidos que fracasan ante variabilidad sintáctica, incapacidad para detectar comportamientos no-humanos en ataques automatizados, y vulnerabilidad ante modulación inteligente de características temporales.
+
+Los ataques generados por LLMs presentan challenges únicos debido a capacidad de adaptación dinámica y generación de variantes sintácticas ilimitadas. Los sistemas adaptativos emergentes \cite{Garcia2024IDSAgent} utilizan agentes LLM alcanzando F1 scores de 0.97 con 61\% de recall para detección zero-day.
+
+\subsection{Metodologías de Investigación}
+
+\subsubsection{Design-Based Research}
+
+El \textbf{Design-Based Research} (DBR) proporciona un marco metodológico para investigación iterativa que integra desarrollo de artefactos con generación de conocimiento teórico. Los ciclos de DBR incluyen analysis de problemas, design de soluciones, development de prototipos, testing en environments controlados, evaluation de efectividad y refinement basado en resultados.
+
+\subsubsection{Behavior-Driven Development}
+
+El \textbf{Behavior-Driven Development} (BDD) extiende metodologías ágiles para incluir specification de comportamientos esperados en lenguaje natural. Los escenarios BDD utilizan sintaxis Gherkin con estructura "Given-When-Then" para especificar condiciones iniciales, action triggers y outcomes esperados.
+
+Los frameworks BDD-Security \cite{Davis2024BDDSecurity} documentan cobertura del 95\% de vulnerabilidades OWASP Top 10 cuando properly implemented, demostrando efectividad para comprehensive security validation.

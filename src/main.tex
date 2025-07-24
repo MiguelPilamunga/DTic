@@ -1,0 +1,70 @@
+\documentclass[11pt,a4paper]{report}
+
+% Incluir el archivo de configuración corregido
+\input{config}
+
+\begin{document}
+
+% ============================================
+% PÁGINAS PRELIMINARES
+% ============================================
+\pagenumbering{roman}
+\setlength\parskip{2.5mm}
+
+% Incluir portada, dedicatoria, agradecimientos, etc.
+\input{seccion0}
+
+\setlength\parskip{0mm}
+\clearpage
+
+% ============================================
+% TABLA DE CONTENIDOS
+% ============================================
+\begin{spacing}{1.4}
+\pdfbookmark[0]{Contenido}{Contenido}
+\tableofcontents
+\end{spacing}
+
+% ============================================
+% LISTA DE FIGURAS Y TABLAS
+% ============================================
+\FloatBarrier
+\listoffigures
+\clearpage
+
+\FloatBarrier
+\listoftables
+\clearpage
+
+% ============================================
+% CONTENIDO PRINCIPAL
+% ============================================
+\setlength\parskip{2.5mm}
+\newpage
+\pagenumbering{arabic}
+\titlespacing*{\chapter}{0pt}{40pt}{40pt}
+
+% Incluir el contenido principal con correcciones de figuras
+\input{secciones}
+
+% ============================================
+% BIBLIOGRAFÍA
+% ============================================
+\FloatBarrier
+\begingroup
+\chapter{\texorpdfstring{REFERENCIAS BIBLIOGRÁFICAS}{REFERENCIAS BIBLIOGRÁFICAS}}
+\sloppy
+\printbibliography[heading=none]
+\endgroup
+
+% ============================================
+% ANEXOS
+% ============================================
+\clearpage
+\FloatBarrier
+\pagenumbering{roman}
+\begin{appendices}
+\input{backmatter/anexos}
+\end{appendices}
+
+\end{document}

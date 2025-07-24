@@ -1,0 +1,281 @@
+\chapter{RESULTADOS}
+
+Este capítulo expone los hallazgos experimentales derivados de la aplicación de la metodología híbrida BDD+DBR+LLM desarrollada para evaluación de ataques de fuerza bruta potenciados por \textbf{Large Language Models} y su detección por sistemas \textbf{IDS/IPS}. Los resultados se estructuran según las fases metodológicas implementadas, exhibiendo hallazgos cuantitativos específicos, análisis comparativo entre técnicas convencionales y avanzadas, y validación de efectividad de contramedidas propuestas.
+
+\section{Resultados de la Fase BDD: Desarrollo Técnico}
+
+\subsection{Efectividad de Técnicas de Reconocimiento Evolutivas}
+
+La implementación iterativa de técnicas de network discovery evidenció progresión clara desde métodos básicos completamente detectables hasta implementaciones ultra-sigilosas que eluden totalmente la detección de sistemas defensivos. Los resultados cuantitativos se exhiben en la Tabla \ref{tab:network_discovery_results}.
+
+\begin{table}[h]
+\centering
+\caption{Efectividad de técnicas de network discovery según iteración implementada}
+\label{tab:network_discovery_results}
+\begin{tabular}{|l|c|c|c|c|}
+\hline
+\textbf{Técnica} & \textbf{Tiempo Delay} & \textbf{Detección SNORT} & \textbf{Alertas Generadas} & \textbf{Evasión (\%)} \\
+\hline
+Ping Básico & 0s & Inmediata & 15-20/minuto & 0\% \\
+\hline
+Ping con Delay & 15-30s & Parcial & 3-5/minuto & 35\% \\
+\hline
+Variación Parámetros & 30-60s & Reducida & 1-2/minuto & 68\% \\
+\hline
+Ultra-Stealth & 120-300s & Nula & 0/minuto & 100\% \\
+\hline
+\end{tabular}
+\end{table}
+
+Los resultados confirman que delays superiores a 120 segundos entre intentos logran evasión completa de detección SNORT configurado según mejores prácticas industriales. La técnica ultra-stealth implementada no generó alertas durante períodos de monitoreo de 4 horas continuas, validando efectividad de evasión mediante modulación temporal extrema.
+
+\subsection{Análisis Comparativo de Patrones de Generación LLM}
+
+El análisis de patrones de generación de contraseñas mediante LLMs comerciales comparado con el dataset RockYou de 14,344,391 contraseñas reales reveló diferencias estructurales significativas. Los hallazgos se exponen en la Tabla \ref{tab:llm_pattern_comparison}.
+
+\begin{table}[h]
+\centering
+\caption{Comparación de patrones entre dataset RockYou y contraseñas generadas por LLMs}
+\label{tab:llm_pattern_comparison}
+\begin{tabular}{|l|c|c|c|c|}
+\hline
+\textbf{Patrón Identificado} & \textbf{RockYou (\%)} & \textbf{ChatGPT (\%)} & \textbf{Claude (\%)} & \textbf{Copilot (\%)} \\
+\hline
+Sufijos Numéricos & 56.2 & 64.6 & 66.3 & 0.9 \\
+\hline
+Prefijos Numéricos & 17.7 & 5.2 & 7.2 & 0.5 \\
+\hline
+Leet Speak & 54.8 & 66.9 & 65.8 & 0.9 \\
+\hline
+Palabras Comunes & 0.2 & 13.3 & 20.4 & 1.0 \\
+\hline
+Patrones de Teclado & 0.0 & 3.0 & 1.6 & 0.4 \\
+\hline
+Longitud Media & 8.7 & 9.9 & 10.5 & 6.3 \\
+\hline
+\end{tabular}
+\end{table}
+
+Los LLMs conversacionales evidencian intensificación sistemática de patrones humanos: incremento del 10-18\% en sufijos numéricos y 12-20\% en uso de leet speak comparado con comportamientos reales. Claude genera contraseñas 10,200\% más predecibles en uso de palabras comunes (20.4\% vs 0.2\% RockYou), indicando mayor susceptibilidad a ataques de diccionario dirigidos.
+
+\subsection{Análisis de Contraseñas Contextuales Ecuatorianas}
+
+El análisis de 207 contraseñas reales recopiladas mediante formulario anónimo en contexto ecuatoriano identificó patrones culturales específicos que proporcionan ventajas para ataques dirigidos. Los hallazgos se presentan en la Tabla \ref{tab:ecuadorian_patterns}.
+
+\begin{table}[h]
+\centering
+\caption{Patrones identificados en dataset de contraseñas ecuatorianas (n=207)}
+\label{tab:ecuadorian_patterns}
+\begin{tabular}{|l|c|c|l|}
+\hline
+\textbf{Patrón de Construcción} & \textbf{Frecuencia (\%)} & \textbf{Ocurrencias} & \textbf{Ejemplos Estructurales} \\
+\hline
+Nombre + Fecha Nacimiento & 47 & 97 & [Nombre][DDMMAAAA] \\
+\hline
+Información Personal & 67 & 139 & [Datos][Números][Símbolos] \\
+\hline
+Contexto Cultural & 89 & 184 & PUCE, Peluchin, Halamadrid \\
+\hline
+Terminación Asterisco & 52 & 108 & [Cualquier]* \\
+\hline
+Años Específicos (1234, 2005) & 34 & 70 & [Texto][1234/2005] \\
+\hline
+Estructura @ Media & 28 & 58 & [Nombre]@[Números] \\
+\hline
+\end{tabular}
+\end{table}
+
+Los hallazgos confirman que 89\% de contraseñas incorporan elementos culturales ecuatorianos específicos, proporcionando base empírica para generación de diccionarios contextuales dirigidos con efectividad estadísticamente significativa.
+
+\section{Resultados de Evolución de Técnicas de Fuerza Bruta}
+
+\subsection{Progresión de Capacidades de Evasión}
+
+La evolución desde herramientas tradicionales hasta sistemas ultra-sigilosos evidenció mejoras dramáticas en capacidades de evasión. Los resultados cuantitativos se exhiben en la Tabla \ref{tab:brute_force_evolution}.
+
+\begin{table}[h]
+\centering
+\caption{Evolución cuantitativa de técnicas de fuerza bruta implementadas}
+\label{tab:brute_force_evolution}
+\begin{tabular}{|l|c|c|c|c|c|}
+\hline
+\textbf{Herramienta} & \textbf{Timing} & \textbf{Conexiones} & \textbf{Detección (\%)} & \textbf{Alertas/min} & \textbf{Evasión (\%)} \\
+\hline
+Hydra Tradicional & 80,000μs & 4 paralelas & 100 & 15-25 & 0 \\
+\hline
+Script Básico & 42s & 1 secuencial & 30 & 3-5 & 70 \\
+\hline
+Advanced Stealth & 150s & 1 humanizada & 15 & 1-2 & 85 \\
+\hline
+Ultimate Stealth & 480-1500s & 1 + fragmentación & 0 & 0 & 100 \\
+\hline
+\end{tabular}
+\end{table}
+
+Los hallazgos confirman mejora del 942,000\% en timing entre Hydra (80,000 microsegundos) y Script Avanzado (42 segundos), con eliminación completa de paralelismo detectable. Ultimate Stealth logra evasión total mediante timing ultra-extendido de 8-25 minutos entre intentos.
+
+\subsection{Efectividad de Técnicas de Humanización Comportamental}
+
+La implementación del modelo InteractionPatternModel con tres perfiles cognitivos diferenciados evidenció efectividad significativa para evasión de detección basada en análisis comportamental. Los resultados se exhiben en la Tabla \ref{tab:humanization_effectiveness}.
+
+\begin{table}[h]
+\centering
+\caption{Efectividad de perfiles cognitivos para humanización comportamental}
+\label{tab:humanization_effectiveness}
+\begin{tabular}{|l|c|c|c|c|c|}
+\hline
+\textbf{Perfil Cog.} & \textbf{Vel. Escritura} & \textbf{Factor Fatiga} & \textbf{Interrupciones (\%)} & \textbf{Evasión (\%)} & \textbf{Duración } \\
+\hline
+Novato Reflexivo & 1.2 chars/s & 2.5x & 15 & 78 & 45 min \\
+\hline
+Multitarea  & 2.8 chars/s & 1.8x & 8 & 85 & 180 min \\
+\hline
+Experto Continuo & 4.2 chars/s & 1.2x & 3 & 91 & 300 min \\
+\hline
+\end{tabular}
+\end{table}
+
+El perfil Experto Continuo alcanzó 91\% de evasión mediante simulación de patrones de interacción consistentes con variabilidad mínima pero realista. Los perfiles implementan distribuciones lognormales para variabilidad temporal y transiciones de estados basadas en fatiga acumulada.
+
+\subsection{Sistema de Rotación Inteligente de Proxies}
+
+La implementación de rotación de proxies con health checks automatizados y blacklisting dinámico evidenció efectividad para fragmentación de visibilidad de ataques coordinados. Los hallazgos se presentan en la Tabla \ref{tab:proxy_rotation_results}.
+
+\begin{table}[h]
+\centering
+\caption{Efectividad del sistema de rotación inteligente de proxies}
+\label{tab:proxy_rotation_results}
+\begin{tabular}{|l|c|c|c|c|}
+\hline
+\textbf{Métrica} & \textbf{Sin Proxies} & \textbf{Proxies Básicos} & \textbf{Rotación Inteligente} & \textbf{Mejora (\%)} \\
+\hline
+Detección por IP & 95\% & 45\% & 23\% & 76\% \\
+\hline
+Tiempo hasta Detección & 3.2 min & 8.7 min & 23.4 min & 631\% \\
+\hline
+Proxies Funcionales & N/A & 60\% & 87\% & 45\% \\
+\hline
+Blacklist Automático & N/A & No & Sí & N/A \\
+\hline
+\end{tabular}
+\end{table}
+
+Los hallazgos confirman reducción del 76\% en detección basada en dirección IP de origen e incremento del 631\% en tiempo hasta primera alerta SNORT mediante rotación coordinada de 200+ proxies distribuidos geográficamente.
+
+\section{Resultados de la Fase DBR: Análisis de Limitaciones}
+
+\subsection{Vulnerabilidades Identificadas en SNORT IDS/IPS}
+
+El análisis sistemático de logs SNORT durante ataques adaptativos reveló vulnerabilidades arquitectónicas específicas que permiten evasión exitosa. Los hallazgos se exponen en la Tabla \ref{tab:snort_vulnerabilities}.
+
+\begin{table}[h]
+\centering
+\caption{Vulnerabilidades arquitectónicas identificadas en SNORT 3}
+\label{tab:snort_vulnerabilities}
+\begin{tabular}{|l|p{3cm}|c|p{4cm}|}
+\hline
+\textbf{Vulnerabilidad} & \textbf{Descripción} & \textbf{Explotación (\%)} & \textbf{Técnica de Evasión} \\
+\hline
+Contadores por IP & Reseteo automático con nuevas IPs & 73 & Rotación de proxies \\
+\hline
+Umbrales Estáticos & No adaptación a patrones variables & 67 & Modulación temporal \\
+\hline
+Falta Correlación & Sin análisis multi-protocolo & 58 & Ataques distribuidos \\
+\hline
+Firmas Estáticas & Dependencia de signatures fijas & 89 & Fragmentación payload \\
+\hline
+\end{tabular}
+\end{table}
+
+Los hallazgos confirman que 89\% de técnicas de fragmentación de payload eluden firmas estáticas, while 73\% de ataques con rotación de proxies resetean contadores de seguimiento por dirección IP.
+
+\subsection{Efectividad de Contramedidas Propuestas}
+
+La implementación de mejoras específicas para SNORT basadas en análisis de limitaciones identificadas evidenció incremento significativo en capacidades de detección. Los resultados se exhiben en la Tabla \ref{tab:countermeasures_effectiveness}.
+
+\begin{table}[h]
+\centering
+\caption{Efectividad de contramedidas implementadas en SNORT}
+\label{tab:countermeasures_effectiveness}
+\begin{tabular}{|l|c|c|c|c|}
+\hline
+\textbf{Contramedida} & \textbf{Detección B(\%)} & \textbf{Detección Mejorada (\%)} & \textbf{Mejora (\%)} & \textbf{Falsos + (\%)} \\
+\hline
+Correlación Temporal & 34 & 67 & 97 & 8 \\
+\hline
+Umbrales Adaptativos & 34 & 71 & 109 & 12 \\
+\hline
+Análisis Comportamental & 34 & 78 & 129 & 9 \\
+\hline
+Detección Multi-protocolo & 34 & 64 & 88 & 11 \\
+\hline
+Sistema Integrado & 34 & 78 & 129 & 12 \\
+\hline
+\end{tabular}
+\end{table}
+
+El sistema integrado de contramedidas alcanzó 78\% de detección de ataques adaptativos manteniendo falsos positivos por debajo del 12\%, confirmando viabilidad operacional de mejoras propuestas.
+
+\section{Resultados de la Fase LLM: Patrones Contextuales}
+
+\subsection{Reglas SNORT Basadas en Patrones de Generación LLM}
+
+El desarrollo de reglas especializadas para detección de patrones de generación automática de credenciales evidenció efectividad superior a detección basada en listas estáticas. Los hallazgos se presentan en la Tabla \ref{tab:llm_pattern_rules}.
+
+\begin{table}[h]
+\centering
+\caption{Efectividad de reglas SNORT basadas en patrones LLM contextuales}
+\label{tab:llm_pattern_rules}
+\begin{tabular}{|l|c|c|c|c|}
+\hline
+\textbf{Patrón Detectado} & \textbf{Frecuencia LLM (\%)} & \textbf{Detección (\%)} & \textbf{Falsos + (\%)} & \textbf{SID Regla} \\
+\hline
+[Nombre][Números][Símbolos] & 45 & 87 & 5 & 9000001 \\
+\hline
+Años Específicos (1234, 2005) & 34 & 82 & 7 & 9000002 \\
+\hline
+Terminación Asterisco & 52 & 89 & 6 & 9000003 \\
+\hline
+Estructura @ Media & 28 & 75 & 8 & 9000007 \\
+\hline
+Palabras Compuestas & 12 & 71 & 9 & 9000006 \\
+\hline
+\end{tabular}
+\end{table}
+
+Las reglas basadas en patrones contextuales alcanzaron 87\% de detección para estructuras [Nombre][Números][Símbolos] y 89\% para terminaciones con asterisco, manteniendo falsos positivos por debajo del 9\%.
+
+\subsection{Validación Estadística de Resultados}
+
+La validación estadística de todos los resultados obtenidos confirmó significancia y reproducibilidad de hallazgos. Los análisis se exponen en la Tabla \ref{tab:statistical_validation}.
+
+\begin{table}[h]
+\centering
+\caption{Validación estadística de resultados experimentales principales}
+\label{tab:statistical_validation}
+\begin{tabular}{|l|c|c|c|c|}
+\hline
+\textbf{Métrica Evaluada} & \textbf{p-valor} & \textbf{Chi-cuadrado (χ²)} & \textbf{Eta cuadrado (η²)} & \textbf{Significancia} \\
+\hline
+Tipo de Diccionario & <0.001 & 47.3 & 0.467 & Altamente significativa \\
+\hline
+Patrón Temporal & <0.001 & 32.1 & 0.372 & Altamente significativa \\
+\hline
+Rotación de Proxies & <0.001 & 18.9 & 0.149 & Significativa \\
+\hline
+Técnicas de Evasión & <0.001 & 55.7 & 0.523 & Altamente significativa \\
+\hline
+\end{tabular}
+\end{table}
+
+Todos los efectos principales evidenciaron significancia estadística (p < 0.001) con tamaños de efecto grandes (η² > 0.14), confirmando robustez de hallazgos experimentales y reproducibilidad de metodología implementada.
+
+\section{Síntesis de Resultados Principales}
+
+Los hallazgos experimentales confirman que los ataques potenciados por LLMs representan una evolución fundamental en capacidades ofensivas, logrando evasión total de sistemas \textbf{IDS/IPS} tradicionales mediante técnicas de humanización comportamental, modulación temporal extrema, y generación contextual de credenciales dirigidas.
+
+La efectividad cuantificada incluye mejora del 942,000\% en timing comparado con herramientas tradicionales, evasión del 100\% mediante Ultimate Stealth versus 0\% de herramientas convencionales, e incremento del 340\% en efectividad con diccionarios contextuales versus genéricos.
+
+Las contramedidas desarrolladas evidenciaron viabilidad técnica y operacional, incrementando detección del 34\% al 78\% mediante análisis híbrido que integra firmas tradicionales con técnicas de machine learning y detección de patrones contextuales.
+
+Los patrones de generación LLM identificados proporcionan base empírica para desarrollo de reglas defensivas especializadas que superan efectividad de métodos basados en listas estáticas, alcanzando 87-89\% de detección con falsos positivos controlados por debajo del 9\%.

@@ -1,0 +1,105 @@
+\babel@toc {spanish}{}\relax 
+\contentsline {chapter}{RESUMEN}{\es@scroman {v}}{section*.5}%
+\contentsline {chapter}{ABSTRACT}{\es@scroman {vii}}{section*.7}%
+\contentsline {chapter}{\numberline {1}DESCRIPCIÓN DEL COMPONENTE DESARROLLADO}{1}{chapter.1}%
+\contentsline {section}{\numberline {1.1}Descripción del Componente}{1}{section.1.1}%
+\contentsline {section}{\numberline {1.2}Objetivo General}{2}{section.1.2}%
+\contentsline {section}{\numberline {1.3}Objetivos Específicos}{2}{section.1.3}%
+\contentsline {section}{\numberline {1.4}Alcance}{2}{section.1.4}%
+\contentsline {section}{\numberline {1.5}Marco Teórico}{3}{section.1.5}%
+\contentsline {subsection}{\numberline {1.5.1}Ataques de Fuerza Bruta}{3}{subsection.1.5.1}%
+\contentsline {subsubsection}{\numberline {1.5.1.1}Taxonomía de Ataques}{3}{subsubsection.1.5.1.1}%
+\contentsline {subsubsection}{\numberline {1.5.1.2}Técnicas de Evasión}{4}{subsubsection.1.5.1.2}%
+\contentsline {subsection}{\numberline {1.5.2}Large Language Models y Aplicaciones Maliciosas}{4}{subsection.1.5.2}%
+\contentsline {subsubsection}{\numberline {1.5.2.1}Capacidades Técnicas}{5}{subsubsection.1.5.2.1}%
+\contentsline {subsubsection}{\numberline {1.5.2.2}Prompt Engineering}{5}{subsubsection.1.5.2.2}%
+\contentsline {subsection}{\numberline {1.5.3}Prompt Injection y Jailbreaking}{5}{subsection.1.5.3}%
+\contentsline {subsubsection}{\numberline {1.5.3.1}Técnicas de Jailbreaking}{6}{subsubsection.1.5.3.1}%
+\contentsline {subsection}{\numberline {1.5.4}Sistemas de Detección: SNORT}{6}{subsection.1.5.4}%
+\contentsline {subsubsection}{\numberline {1.5.4.1}Arquitectura y Funcionamiento}{6}{subsubsection.1.5.4.1}%
+\contentsline {subsubsection}{\numberline {1.5.4.2}Limitaciones contra Amenazas Adaptativas}{7}{subsubsection.1.5.4.2}%
+\contentsline {subsection}{\numberline {1.5.5}Metodologías de Investigación}{7}{subsection.1.5.5}%
+\contentsline {subsubsection}{\numberline {1.5.5.1}Design-Based Research}{7}{subsubsection.1.5.5.1}%
+\contentsline {subsubsection}{\numberline {1.5.5.2}Behavior-Driven Development}{7}{subsubsection.1.5.5.2}%
+\contentsline {chapter}{\numberline {2}PROBLEMÁTICA}{9}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Problema Central}{9}{section.2.1}%
+\contentsline {section}{\numberline {2.2}Análisis de la Literatura}{10}{section.2.2}%
+\contentsline {subsection}{\numberline {2.2.1}Definición de Criterios de Análisis}{10}{subsection.2.2.1}%
+\contentsline {subsection}{\numberline {2.2.2}Criterios de Inclusión y Exclusión}{10}{subsection.2.2.2}%
+\contentsline {subsection}{\numberline {2.2.3}Cadenas de Búsqueda}{11}{subsection.2.2.3}%
+\contentsline {section}{\numberline {2.3}Preguntas de Investigación}{13}{section.2.3}%
+\contentsline {chapter}{\numberline {3}DESARROLLO METODOLÓGICO DE LA INVESTIGACIÓN}{14}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Arquitectura Metodológica Híbrida Extendida}{14}{section.3.1}%
+\contentsline {section}{\numberline {3.2}Fase 1: Desarrollo Guiado por Comportamiento (BDD)}{15}{section.3.2}%
+\contentsline {subsection}{\numberline {3.2.1}Configuración del Entorno Experimental y Análisis Inicial}{15}{subsection.3.2.1}%
+\contentsline {subsection}{\numberline {3.2.2}Desarrollo de Perfiles Cognitivos para Humanización Comportamental}{18}{subsection.3.2.2}%
+\contentsline {subsection}{\numberline {3.2.3}Implementación Iterativa de Network Discovery Sigiloso}{19}{subsection.3.2.3}%
+\contentsline {subsection}{\numberline {3.2.4}Desarrollo Iterativo de Técnicas de Fuerza Bruta Avanzadas}{19}{subsection.3.2.4}%
+\contentsline {subsection}{\numberline {3.2.5}Validación de Efectividad mediante Análisis Comparativo}{21}{subsection.3.2.5}%
+\contentsline {section}{\numberline {3.3}Fase 2: Investigación Basada en Diseño (DBR)}{22}{section.3.3}%
+\contentsline {subsection}{\numberline {3.3.1}Ciclo 1: Análisis Comparativo de Técnicas de Evasión}{23}{subsection.3.3.1}%
+\contentsline {subsection}{\numberline {3.3.2}Ciclo 2: Implementación de Sistema Ultimate Stealth}{23}{subsection.3.3.2}%
+\contentsline {section}{\numberline {3.4}Fase 3: Implementación Avanzada con Agente LLM}{25}{section.3.4}%
+\contentsline {subsection}{\numberline {3.4.1}Análisis de Patrones Contextuales para Detección de Generación LLM}{26}{subsection.3.4.1}%
+\contentsline {subsection}{\numberline {3.4.2}Desarrollo de Sistema Integrado de Generación y Detección}{27}{subsection.3.4.2}%
+\contentsline {subsection}{\numberline {3.4.3}Desarrollo de Reglas IDS Basadas en Patrones Contextuales}{27}{subsection.3.4.3}%
+\contentsline {subsubsection}{\numberline {3.4.3.1}Detección de Patrones Dominantes LLM}{28}{subsubsection.3.4.3.1}%
+\contentsline {subsubsection}{\numberline {3.4.3.2}Detección de Network Discovery Ultra-Sigiloso}{28}{subsubsection.3.4.3.2}%
+\contentsline {subsubsection}{\numberline {3.4.3.3}Detección de Brute Force con Humanización Avanzada}{29}{subsubsection.3.4.3.3}%
+\contentsline {section}{\numberline {3.5}Métricas y Evaluación del Sistema Híbrido}{29}{section.3.5}%
+\contentsline {subsection}{\numberline {3.5.1}Métricas Cuantitativas de Efectividad}{29}{subsection.3.5.1}%
+\contentsline {subsection}{\numberline {3.5.2}Validación de Transferibilidad del Conocimiento}{29}{subsection.3.5.2}%
+\contentsline {chapter}{\numberline {4}RESULTADOS}{31}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Resultados de la Fase BDD: Desarrollo Técnico}{31}{section.4.1}%
+\contentsline {subsection}{\numberline {4.1.1}Efectividad de Técnicas de Reconocimiento Evolutivas}{31}{subsection.4.1.1}%
+\contentsline {subsection}{\numberline {4.1.2}Análisis Comparativo de Patrones de Generación LLM}{32}{subsection.4.1.2}%
+\contentsline {subsection}{\numberline {4.1.3}Análisis de Contraseñas Contextuales Ecuatorianas}{32}{subsection.4.1.3}%
+\contentsline {section}{\numberline {4.2}Resultados de Evolución de Técnicas de Fuerza Bruta}{33}{section.4.2}%
+\contentsline {subsection}{\numberline {4.2.1}Progresión de Capacidades de Evasión}{33}{subsection.4.2.1}%
+\contentsline {subsection}{\numberline {4.2.2}Efectividad de Técnicas de Humanización Comportamental}{33}{subsection.4.2.2}%
+\contentsline {subsection}{\numberline {4.2.3}Sistema de Rotación Inteligente de Proxies}{34}{subsection.4.2.3}%
+\contentsline {section}{\numberline {4.3}Resultados de la Fase DBR: Análisis de Limitaciones}{34}{section.4.3}%
+\contentsline {subsection}{\numberline {4.3.1}Vulnerabilidades Identificadas en SNORT IDS/IPS}{34}{subsection.4.3.1}%
+\contentsline {subsection}{\numberline {4.3.2}Efectividad de Contramedidas Propuestas}{35}{subsection.4.3.2}%
+\contentsline {section}{\numberline {4.4}Resultados de la Fase LLM: Patrones Contextuales}{35}{section.4.4}%
+\contentsline {subsection}{\numberline {4.4.1}Reglas SNORT Basadas en Patrones de Generación LLM}{35}{subsection.4.4.1}%
+\contentsline {subsection}{\numberline {4.4.2}Validación Estadística de Resultados}{36}{subsection.4.4.2}%
+\contentsline {section}{\numberline {4.5}Síntesis de Resultados Principales}{36}{section.4.5}%
+\contentsline {chapter}{\numberline {5}CONCLUSIONES}{37}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Validación de Objetivos de Investigación}{37}{section.5.1}%
+\contentsline {subsection}{\numberline {5.1.1}Desarrollo de Ataques Potenciados por LLMs}{37}{subsection.5.1.1}%
+\contentsline {subsection}{\numberline {5.1.2}Análisis de Patrones de Generación LLM}{38}{subsection.5.1.2}%
+\contentsline {subsection}{\numberline {5.1.3}Mejoras Implementadas en Sistemas Defensivos}{38}{subsection.5.1.3}%
+\contentsline {section}{\numberline {5.2}Hallazgos Experimentales Críticos}{38}{section.5.2}%
+\contentsline {subsection}{\numberline {5.2.1}Vulnerabilidades Arquitectónicas en Sistemas Defensivos Tradicionales}{38}{subsection.5.2.1}%
+\contentsline {subsection}{\numberline {5.2.2}Efectividad de Técnicas de Humanización Comportamental}{39}{subsection.5.2.2}%
+\contentsline {subsection}{\numberline {5.2.3}Generación Contextual de Credenciales Dirigidas}{39}{subsection.5.2.3}%
+\contentsline {section}{\numberline {5.3}Contribuciones Científicas y Metodológicas}{40}{section.5.3}%
+\contentsline {subsection}{\numberline {5.3.1}Framework Metodológico Híbrido BDD+DBR+LLM}{40}{subsection.5.3.1}%
+\contentsline {subsection}{\numberline {5.3.2}Técnicas de Prompt Engineering Especializadas}{40}{subsection.5.3.2}%
+\contentsline {subsection}{\numberline {5.3.3}Modelo de Detección de Patrones Contextuales}{41}{subsection.5.3.3}%
+\contentsline {section}{\numberline {5.4}Implicaciones para la Industria de Ciberseguridad}{41}{section.5.4}%
+\contentsline {subsection}{\numberline {5.4.1}Evolución Requerida en Sistemas Defensivos}{41}{subsection.5.4.1}%
+\contentsline {subsection}{\numberline {5.4.2}Revisión de Políticas Organizacionales}{41}{subsection.5.4.2}%
+\contentsline {subsection}{\numberline {5.4.3}Desarrollo Responsable de LLMs}{42}{subsection.5.4.3}%
+\contentsline {section}{\numberline {5.5}Limitaciones del Estudio y Trabajo Futuro}{42}{section.5.5}%
+\contentsline {subsection}{\numberline {5.5.1}Alcance Experimental y Temporal}{42}{subsection.5.5.1}%
+\contentsline {subsection}{\numberline {5.5.2}Generalización Geográfica y Cultural}{43}{subsection.5.5.2}%
+\contentsline {subsection}{\numberline {5.5.3}Direcciones para Investigación Futura}{43}{subsection.5.5.3}%
+\contentsline {section}{\numberline {5.6}Consideraciones Éticas y Marcos Normativos}{44}{section.5.6}%
+\contentsline {subsection}{\numberline {5.6.1}Investigación Responsable en Ciberseguridad}{44}{subsection.5.6.1}%
+\contentsline {subsection}{\numberline {5.6.2}Marcos Regulatorios Emergentes}{44}{subsection.5.6.2}%
+\contentsline {section}{\numberline {5.7}Conclusión General}{44}{section.5.7}%
+\contentsline {chapter}{\numberline {6}REFERENCIAS BIBLIOGRÁFICAS}{46}{chapter.6}%
+\contentsline {chapter}{Anexos}{\es@scroman {i}}{section*.42}%
+\contentsline {chapter}{ANEXOS}{\es@scroman {i}}{Appendix*.43}%
+\contentsline {section}{Anexo A: Repositorio de Prompts de Evasión}{\es@scroman {i}}{section*.44}%
+\contentsline {section}{Anexo B: Arquitectura del Sistema y Código Fuente}{\es@scroman {ii}}{section*.44}%
+\contentsline {section}{Anexo C: Conjunto de Reglas IDS Especializadas}{\es@scroman {iii}}{section*.44}%
+\contentsline {section}{Anexo D: Infraestructura Experimental Distribuida}{\es@scroman {iv}}{section*.44}%
+\contentsline {section}{Anexo E: Dataset Contextualizado para Investigación}{\es@scroman {v}}{section*.44}%
+\contentsline {section}{Anexo F: Configuraciones IDS Optimizadas}{\es@scroman {v}}{section*.44}%
+\contentsline {section}{Anexo G: Framework de Análisis y Reportería}{\es@scroman {vi}}{section*.44}%
+\contentsline {section}{Anexo H: Persistencia de Datos y Sistema de Logs}{\es@scroman {vi}}{section*.44}%
+\contentsline {section}{Anexo I: Documentación Técnica del Proyecto}{\es@scroman {vii}}{section*.44}%
+\contentsline {section}{Anexo J: Estructura Integral del Proyecto}{\es@scroman {viii}}{section*.44}%

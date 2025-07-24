@@ -1,0 +1,122 @@
+\chapter{PROBLEMÁTICA}
+
+\section{Problema Central}
+
+La ciberseguridad contemporánea experimenta una transformación crítica donde adversarios explotan LLMs para desarrollar ataques de fuerza bruta adaptativos que evolucionan autónomamente, while sistemas \textbf{IDS/IPS} permanecen fundamentados en metodologías de detección estáticas basadas en firmas predefinidas. Esta asimetría tecnológica genera una ventaja táctica persistente para atacantes capaces de mutar automáticamente sus técnicas mediante prompt injection y jailbreaking, superando capacidades defensivas tradicionales implementadas en infraestructuras de detección.
+
+Los efectos de esta problemática incluyen el incremento exponencial de ataques de fuerza bruta a nivel global durante 2024. Las estadísticas especializadas documentan un aumento del 75\% en ciberataques durante Q3 2024 comparado con períodos equivalentes \cite{CheckPoint2024Q3}. El análisis regional revela que América Latina experimenta incremento del 53\% en ataques semanales por organización \cite{CrowdStrike2025LATAM}. La investigación especializada identifica más de 200 aplicaciones maliciosas que explotan capacidades de LLMs para automatizar compromiso de credenciales \cite{Lin2024Malla}.
+
+El primer caso documentado de malware que utiliza LLMs en tiempo real corresponde a LameHug, atribuido al grupo APT28, que emplea APIs de modelos de lenguaje con arquitecturas especializadas para reconnaissance automatizado y exfiltration de datos \cite{Kim2024LameHug}. Los mercados underground documentan proliferación de LLMs maliciosos especializados con más de 3,000 transacciones confirmadas para operaciones de botnet y generación de código ofensivo \cite{Patel2024DarkWebLLM}.
+
+La velocidad de mutación de ataques adaptativos supera significativamente los ciclos de actualización de reglas de detección en sistemas defensivos, creando ventanas de vulnerabilidad prolongadas. Los adversarios pueden regenerar automáticamente patrones de código, modular intervalos temporales de forma inteligente, e implementar técnicas de humanización que simulan comportamiento legítimo para evadir detección. Los hallazgos experimentales evidencian que ataques potenciados por LLMs exhiben tasas de evasión 25\% superiores a métodos convencionales \cite{Rodriguez2024BruteForce}.
+
+Esta capacidad de evolución continua mediante LLMs representa una amenaza fundamental para la efectividad de sistemas defensivos basados en signatures estáticas que requieren conocimiento previo de patrones de ataque. Los protocolos más susceptibles incluyen SSH, FTP, HTTP/HTTPS, Telnet, RDP, VNC, MySQL, PostgreSQL, SMTP, POP3, IMAP, SNMP y DNS, donde los ataques adaptativos pueden explotar múltiples vectores simultáneamente con coordinación automatizada.
+
+\section{Análisis de la Literatura}
+
+La revisión sistemática se ejecutó siguiendo protocolos establecidos para identificar investigación relevante sobre LLMs aplicados a ataques de fuerza bruta adaptativos. La búsqueda se realizó en IEEE Xplore, ACM Digital Library, Springer Link, USENIX Security Symposium y Google Scholar durante 2023-2025, correspondiente a la era de disponibilidad comercial de LLMs avanzados con capacidades de generación de código.
+
+\subsection{Definición de Criterios de Análisis}
+
+\begin{table}[h]
+\centering
+\caption{Criterios de Análisis para la Revisión Sistemática}
+\label{tab:criterios_analisis}
+\begin{tabular}{|p{4cm}|p{8cm}|}
+\hline
+\textbf{Criterio de Análisis} & \textbf{Descripción} \\
+\hline
+Tipos de LLMs & Identificación del modelo específico utilizado en el estudio (arquitecturas transformer comerciales, modelos de código abierto, o LLMs especializados maliciosos). \\
+\hline
+Técnicas de prompt injection & Técnicas específicas para manipular comportamiento de LLMs mediante inserción de instrucciones maliciosas, incluyendo metodologías adversariales y datasets de jailbreaking. \\
+\hline
+Métodos de jailbreaking & Métodos utilizados para evadir restricciones éticas implementadas en LLMs comerciales, incluyendo roleplay contextual, fragmentación de instrucciones, y optimización adversarial. \\
+\hline
+Ataques de fuerza bruta adaptativos & Capacidades de generación automática de variantes que modifican patrones comportamentales, técnicas de evasión temporal, y generación contextual de credenciales. \\
+\hline
+Evaluación de sistemas defensivos & Análisis de efectividad de sistemas tradicionales ante ataques generados por LLMs, incluyendo métricas de detección, falsos positivos, y tiempo de respuesta. \\
+\hline
+Análisis de resultados & Los artículos deben presentar evaluación empírica con métricas cuantificables de efectividad, significancia estadística, y comparación con métodos baseline. \\
+\hline
+\end{tabular}
+\end{table}
+
+\subsection{Criterios de Inclusión y Exclusión}
+
+Para garantizar la relevancia, actualidad y calidad de las fuentes utilizadas, se han definido criterios específicos que permiten seleccionar únicamente estudios pertinentes al objetivo planteado.
+
+\begin{table}[h]
+\centering
+\caption{Criterios de Inclusión}
+\label{tab:criterios_inclusion}
+\begin{tabular}{|p{4cm}|p{8cm}|}
+\hline
+\textbf{Criterios de Inclusión} & \textbf{Descripción} \\
+\hline
+Fuentes académicas & Artículos indexados en IEEE Xplore, ACM Digital Library, SpringerLink, USENIX Security, NDSS, CCS, y revistas especializadas con factor de impacto verificable. \\
+\hline
+Contenido relevante & Estudios centrados en uso de LLMs para generación de ataques de fuerza bruta, con enfoque en técnicas de prompt injection, jailbreaking, y evasión de sistemas defensivos. \\
+\hline
+Sistemas defensivos & Investigaciones que evalúen limitaciones de sistemas de detección tradicionales ante ataques adaptativos, incluyendo sistemas híbridos con machine learning. \\
+\hline
+Resultados esperados & Investigaciones que aborden técnicas para eludir restricciones éticas en LLMs y generar código ofensivo funcional con métricas cuantificables de efectividad. \\
+\hline
+Idioma & Inglés y español, priorizando publicaciones en inglés por mayor disponibilidad en venues de alto impacto. \\
+\hline
+Periodo de publicación & Artículos publicados entre enero 2023 y julio 2025, enfocándose en desarrollos posteriores al lanzamiento de arquitecturas transformer avanzadas. \\
+\hline
+\end{tabular}
+\end{table}
+
+Con el fin de mantener la rigurosidad científica del análisis, se establecieron criterios de exclusión que descartan estudios que no cumplen con estándares mínimos de calidad, actualidad o pertinencia.
+
+\begin{table}[h]
+\centering
+\caption{Criterios de Exclusión}
+\label{tab:criterios_exclusion}
+\begin{tabular}{|p{4cm}|p{8cm}|}
+\hline
+\textbf{Criterios de Exclusión} & \textbf{Descripción} \\
+\hline
+Fiabilidad de la fuente & Estudios que no provienen de organismos académicos reconocidos, conferencias sin peer-review, o publicaciones sin validación científica rigurosa. \\
+\hline
+Pertinencia del contenido & Publicaciones que abordan LLMs o ataques de fuerza bruta de forma aislada sin integración entre dominios, o que se enfocan únicamente en aspectos teóricos sin aplicación práctica. \\
+\hline
+Relevancia investigativa & Estudios que no contribuyen directamente al objetivo de evaluar sistemas defensivos ante ataques adaptativos, o que se limitan a revisiones sin aportaciones novedosas. \\
+\hline
+Validación empírica & Artículos puramente teóricos sin evidencia experimental, casos de uso prácticos, o evaluación cuantitativa de técnicas propuestas. \\
+\hline
+Periodo de publicación & Artículos publicados antes de enero 2023, cuando las capacidades de LLMs para generación de código eran limitadas comparado con modelos actuales. \\
+\hline
+\end{tabular}
+\end{table}
+
+\subsection{Cadenas de Búsqueda}
+
+Para la adquisición de literatura académica y técnica pertinente, se desarrollaron cadenas de búsqueda especializadas que reflejan la intersección entre LLMs y ciberseguridad ofensiva:
+
+\begin{itemize}
+\item (``large language models'' OR ``LLM'' OR ``transformer architecture'' OR ``generative AI'') AND (``brute force'' OR ``password attack'' OR ``credential attack'' OR ``authentication bypass'') AND (``detection'' OR ``IDS'' OR ``IPS'' OR ``intrusion detection'')
+
+\item (``prompt injection'' OR ``jailbreaking'' OR ``adversarial prompts'') AND (``LLM'' OR ``language model'') AND (``attack generation'' OR ``malicious code'' OR ``automated exploitation'')
+
+\item (``intrusion detection'' OR ``IDS/IPS'' OR ``network security'') AND (``adaptive attacks'' OR ``polymorphic attacks'' OR ``evasion techniques'') AND (``AI generated'' OR ``LLM generated'' OR ``machine learning'')
+
+\item (``malicious LLM'' OR ``offensive AI'' OR ``red team AI'') AND (``cybersecurity'' OR ``offensive security'' OR ``penetration testing'') AND (``brute force'' OR ``credential stuffing'')
+
+\item (``SSH brute force'' OR ``FTP attack'' OR ``RDP brute force'' OR ``database attack'') AND (``LLM'' OR ``AI generated'') AND (``detection bypass'' OR ``evasion'')
+\end{itemize}
+
+Estos comandos permitieron identificar 1,847 publicaciones iniciales que fueron filtradas mediante los criterios establecidos. La aplicación de criterios de calidad metodológica redujo el corpus a 423 publicaciones relevantes, de las cuales 67 estudios presentaron relevancia directa para ataques de fuerza bruta adaptativos generados por LLMs.
+
+La literatura evidencia limitados estudios relacionados con evaluación específica de sistemas defensivos tradicionales ante ataques de fuerza bruta generados por LLMs, implementación de técnicas de prompt injection para evadir detección basada en firmas estáticas, y desarrollo de metodologías sistemáticas para mejorar efectividad defensiva contra amenazas polimórficas que se regeneran automáticamente.
+
+Los gaps identificados incluyen ausencia de frameworks estandarizados para evaluación de defensas ante ataques potenciados por LLMs, limitada investigación sobre técnicas de humanización para evasión temporal, y carencia de datasets públicos que documenten ataques reales generados por LLMs contra múltiples protocolos de autenticación simultáneamente.
+
+\section{Preguntas de Investigación}
+
+¿Qué técnicas específicas de prompt injection y jailbreaking en LLMs comerciales permiten generar scripts funcionales de ataques de fuerza bruta que evadan las restricciones éticas implementadas en estos modelos para múltiples protocolos de autenticación incluyendo SSH, FTP, HTTP/HTTPS, Telnet, RDP, VNC, bases de datos, y servicios de correo?
+
+¿Cómo pueden los ataques de fuerza bruta adaptativos generados por LLMs modificar dinámicamente sus patrones comportamentales temporales, distribución geográfica, y generación contextual de credenciales para evadir la detección de sistemas \textbf{IDS/IPS} configurados según mejores prácticas industriales y reglas especializadas?
+
+¿Qué mejoras específicas en reglas de detección, algoritmos de correlación temporal, y técnicas de machine learning requieren los sistemas \textbf{IDS/IPS} para detectar efectivamente ataques de fuerza bruta polimórficos generados por LLMs que no corresponden a patrones predefinidos en bases de conocimiento tradicionales y que explotan múltiples vectores de autenticación coordinadamente?

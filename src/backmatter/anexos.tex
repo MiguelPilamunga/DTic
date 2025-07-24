@@ -1,0 +1,237 @@
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    urlcolor=blue,
+    citecolor=blue
+}
+
+% Comando personalizado para hipervínculos con formato específico
+\newcommand{\bluelink}[2]{\textcolor{blue}{\underline{\href{#1}{#2}}}}
+
+\chapter*{ANEXOS}
+\addcontentsline{toc}{chapter}{ANEXOS}
+
+\section*{Anexo A: Repositorio de Prompts de Evasión}
+\addcontentsline{toc}{section}{Anexo A: Repositorio de Prompts de Evasión}
+
+El conjunto completo de prompts desarrollados para la evasión de sistemas de detección y generación contextualizada se encuentra alojado en el repositorio del proyecto. Estos recursos constituyen la base experimental para la evaluación de vulnerabilidades en sistemas de autenticación mediante técnicas de ingeniería de prompts.
+
+\subsection*{A.1 Generador Automático de Contraseñas}
+El módulo de generación básica implementa algoritmos adaptativos para la creación de diccionarios de contraseñas contextualizados: \bluelink{https://github.com/MiguelPilamunga/DTic/blob/main/agenteAtaqueFuerzaBruta/prompts/genradoredecontrasenas.txt}{generador de contraseñas}
+
+\subsection*{A.2 Engine de Análisis de Patrones Comportamentales}
+Este conjunto integra técnicas de reconocimiento de patrones y análisis predictivo para la identificación de vulnerabilidades: \bluelink{https://github.com/MiguelPilamunga/DTic/blob/main/agenteAtaqueFuerzaBruta/prompts/prompts.txt}{análisis de patrones}
+
+\subsection*{A.3 Base de Conocimiento Contextual Ecuatoriana}
+Dataset especializado que incorpora elementos culturales, institucionales y sociodemográficos del contexto ecuatoriano: \bluelink{https://github.com/MiguelPilamunga/DTic/blob/main/agenteAtaqueFuerzaBruta/prompts/informacion.txt}{información contextual}
+
+\section*{Anexo B: Arquitectura del Sistema y Código Fuente}
+\addcontentsline{toc}{section}{Anexo B: Arquitectura del Sistema y Código Fuente}
+
+La implementación completa del framework de pruebas se encuentra estructurada en módulos especializados, cada uno diseñado para aspectos específicos del proceso de evaluación de seguridad. El repositorio GitHub contiene la totalidad del código fuente con documentación técnica detallada.
+
+\subsection*{B.1 Módulos de Análisis y Detección Automatizada}
+\begin{itemize}
+    \item \textbf{Pattern Analysis Engine}: Motor de análisis avanzado para identificación de patrones comportamentales en ataques de credenciales - \bluelink{https://github.com/MiguelPilamunga/DTic/blob/main/agenteAtaqueFuerzaBruta/ScriptGeneradosPorPromptEvasion/analizadordePatrones.py}{analizador de patrones}
+    \item \textbf{Network Discovery Framework}: Sistema automatizado de reconocimiento y mapeo de infraestructura de red - \bluelink{https://github.com/MiguelPilamunga/DTic/blob/main/agenteAtaqueFuerzaBruta/ScriptGeneradosPorPromptEvasion/NetworkDiscovery.py}{network discovery}
+    \item \textbf{Behavioral Humanizer}: Algoritmo de humanización de tráfico para evasión de sistemas heurísticos - \bluelink{https://github.com/MiguelPilamunga/DTic/blob/main/agenteAtaqueFuerzaBruta/ScriptMejroados/humanizer.py}{humanizer}
+    \item \textbf{Advanced Proxy Manager}: Gestor inteligente de proxies con rotación automática y análisis de latencia - \bluelink{https://github.com/MiguelPilamunga/DTic/blob/main/agenteAtaqueFuerzaBruta/ScriptMejroados/proxi.py}{proxy manager}
+\end{itemize}
+
+\subsection*{B.2 Framework de Ataques de Fuerza Bruta Avanzados}
+\begin{itemize}
+    \item \textbf{Stealth Brute Force Core}: Núcleo principal del sistema de ataques sigilosos con técnicas anti-detección - \bluelink{https://github.com/MiguelPilamunga/DTic/blob/main/snorl_bruteforce/advanced_stealth_bruteforce.py}{stealth brute force}
+    \item \textbf{Ultimate Stealth Engine}: Motor avanzado con capacidades de machine learning para predicción de credenciales - \bluelink{https://github.com/MiguelPilamunga/DTic/blob/main/snorl_bruteforce/ultimate_stealth_bruteforce.py}{ultimate stealth}
+    \item \textbf{Intelligent Attack Orchestrator}: Sistema coordinado de ataques distribuidos con análisis contextual - \bluelink{https://github.com/MiguelPilamunga/DTic/blob/main/snorl_bruteforce/integrated_intelligent_attack.py}{intelligent attack}
+    \item \textbf{Smart Password Manager}: Gestor inteligente de diccionarios con optimización basada en contexto cultural - \bluelink{https://github.com/MiguelPilamunga/DTic/blob/main/snorl_bruteforce/intelligent_password_manager.py}{password manager}
+\end{itemize}
+
+\subsection*{B.3 Sistema Integrado de Detección y Monitoreo}
+\begin{itemize}
+    \item \textbf{Stealth Attack Detection System}: Motor especializado en identificación de ataques de baja intensidad - \bluelink{https://github.com/MiguelPilamunga/DTic/blob/main/snorl_bruteforce/stealth_attack_detector.py}{stealth detector}
+    \item \textbf{Statistical Anomaly Engine}: Analizador estadístico para detección de anomalías comportamentales - \bluelink{https://github.com/MiguelPilamunga/DTic/blob/main/snorl_bruteforce/statistical_detection_engine.py}{statistical engine}
+    \item \textbf{LLM Pattern Recognition Module}: Detector especializado en patrones generados por Large Language Models - \bluelink{https://github.com/MiguelPilamunga/DTic/blob/main/snorl_bruteforce/llm_password_pattern_detector.py}{LLM detector}
+\end{itemize}
+
+\section*{Anexo C: Conjunto de Reglas IDS Especializadas}
+\addcontentsline{toc}{section}{Anexo C: Conjunto de Reglas IDS Especializadas}
+
+Las reglas de detección desarrolladas representan una aproximación innovadora para la identificación de ataques generados mediante técnicas de inteligencia artificial. Este conjunto de reglas ha sido optimizado específicamente para entornos de red ecuatorianos.
+
+\subsection*{C.1 Reglas de Detección Fundamental}
+\begin{itemize}
+    \item \textbf{Core Brute Force Detection}: Conjunto básico de reglas para identificación de ataques tradicionales de fuerza bruta - \bluelink{https://github.com/MiguelPilamunga/DTic/blob/main/snorl_bruteforce/containers/snort/brute-force.rules}{brute-force rules}
+    \item \textbf{Advanced Pattern Recognition}: Reglas avanzadas basadas en análisis estadístico de comportamientos anómalos - \bluelink{https://github.com/MiguelPilamunga/DTic/blob/main/snorl_bruteforce/advanced_detection_rules_based_on_results.rules}{advanced detection rules}
+    \item \textbf{Stealth Activity Monitor}: Detector específico para técnicas de evasión y ataques de baja frecuencia - \bluelink{https://github.com/MiguelPilamunga/DTic/blob/main/snorl_bruteforce/advanced_stealth_detection.rules}{stealth detection rules}
+\end{itemize}
+
+\subsection*{C.2 Reglas Contextuales para Detección LLM}
+\begin{itemize}
+    \item \textbf{AI-Generated Pattern Detector}: Motor especializado en identificación de contraseñas generadas por modelos de lenguaje - \bluelink{https://github.com/MiguelPilamunga/DTic/blob/main/snorl_bruteforce/llm_password_detection.rules}{LLM detection rules}
+    \item \textbf{Ecuadorian Context Analyzer}: Sistema de detección adaptado a patrones culturales y lingüísticos ecuatorianos - \bluelink{https://github.com/MiguelPilamunga/DTic/blob/main/snorl_bruteforce/snort_config/rules/ecuadorian_attack_detection.rules}{ecuadorian detection}
+    \item \textbf{Contextual Pattern Monitor}: Analizador de patrones específicos basados en contexto geográfico y cultural - \bluelink{https://github.com/MiguelPilamunga/DTic/blob/main/snorl_bruteforce/specific_pattern_detection.rules}{pattern detection rules}
+\end{itemize}
+
+\section*{Anexo D: Infraestructura Experimental Distribuida}
+\addcontentsline{toc}{section}{Anexo D: Infraestructura Experimental Distribuida}
+
+\subsection*{D.1 Arquitectura de Contenedores Especializados}
+El laboratorio experimental se fundamenta en una arquitectura distribuida que permite la simulación realista de escenarios de ataque y defensa:
+\begin{itemize}
+    \item \textbf{Orchestration Configuration}: Configuración maestra para despliegue automatizado del entorno de pruebas - \bluelink{https://github.com/MiguelPilamunga/DTic/blob/main/snorl_bruteforce/docker-compose.yml}{docker-compose}
+    \item \textbf{Attack Vector Containers}: Contenedores especializados para simulación de diferentes vectores de ataque - \bluelink{https://github.com/MiguelPilamunga/DTic/tree/main/snorl_bruteforce/containers/attacker}{attack containers}
+    \item \textbf{Target Service Containers}: Servicios objetivo configurados con diferentes niveles de seguridad - \bluelink{https://github.com/MiguelPilamunga/DTic/tree/main/snorl_bruteforce/containers/target}{target containers}
+    \item \textbf{Monitoring Infrastructure}: Sistema integrado de monitoreo con capacidades de análisis en tiempo real - \bluelink{https://github.com/MiguelPilamunga/DTic/tree/main/snorl_bruteforce/containers/snort}{monitoring containers}
+\end{itemize}
+
+\subsection*{D.2 Automatización mediante Infrastructure as Code}
+Los playbooks de automatización proporcionan capacidades de despliegue reproducible y escalable:
+\begin{itemize}
+    \item \textbf{Distributed Lab Setup}: Configuración automatizada para laboratorios multi-nodo - \bluelink{https://github.com/MiguelPilamunga/DTic/blob/main/snorl_bruteforce/ansible/playbooks/setup-distributed-lab.yml}{setup playbook}
+    \item \textbf{Coordinated Attack Execution}: Orquestación de ataques distribuidos con sincronización temporal - \bluelink{https://github.com/MiguelPilamunga/DTic/blob/main/snorl_bruteforce/ansible/playbooks/run-distributed-attack.yml}{attack playbook}
+    \item \textbf{Environment Variables Management}: Gestión centralizada de configuraciones y variables de entorno - \bluelink{https://github.com/MiguelPilamunga/DTic/tree/main/snorl_bruteforce/ansible/group_vars}{group variables}
+\end{itemize}
+
+\section*{Anexo E: Dataset Contextualizado para Investigación}
+\addcontentsline{toc}{section}{Anexo E: Dataset Contextualizado para Investigación}
+
+\subsection*{E.1 Wordlist Especializada en Contexto Ecuatoriano}
+El desarrollo de un dataset específicamente adaptado al contexto sociocultural ecuatoriano constituye una contribución significativa para la evaluación de vulnerabilidades contextualizadas. Esta base de datos incorpora elementos lingüísticos, culturales y geográficos característicos del entorno ecuatoriano: \bluelink{https://github.com/MiguelPilamunga/DTic/blob/main/snorl_bruteforce/ecuadorian_context_wordlist.txt}{ecuadorian wordlist}
+
+El dataset integra patrones derivados de instituciones educativas, organizaciones gubernamentales, referencias geográficas, y elementos culturales representativos, permitiendo evaluar la efectividad de ataques contextualizados frente a defensas tradicionales.
+
+\section*{Anexo F: Configuraciones IDS Optimizadas}
+\addcontentsline{toc}{section}{Anexo F: Configuraciones IDS Optimizadas}
+
+\subsection*{F.1 Configuración Principal del Sistema}
+Las configuraciones especializadas del sistema de detección de intrusiones han sido optimizadas para la identificación de ataques generados mediante inteligencia artificial:
+\begin{itemize}
+    \item \textbf{Master Configuration}: Configuración principal del sistema con optimizaciones para detección de ataques AI-assisted - \bluelink{https://github.com/MiguelPilamunga/DTic/blob/main/snorl_bruteforce/snort_config/etc/snort.conf}{snort.conf}
+    \item \textbf{Updated Detection Engine}: Versión actualizada con reglas específicas para patrones LLM - \bluelink{https://github.com/MiguelPilamunga/DTic/blob/main/snorl_bruteforce/snort_updated.conf}{snort updated}
+    \item \textbf{Automated Startup Scripts}: Scripts de inicialización automatizada con configuraciones pre-optimizadas - \bluelink{https://github.com/MiguelPilamunga/DTic/blob/main/snorl_bruteforce/snort_config/scripts/start_snort.sh}{startup script}
+\end{itemize}
+
+\section*{Anexo G: Framework de Análisis y Reportería}
+\addcontentsline{toc}{section}{Anexo G: Framework de Análisis y Reportería}
+
+\subsection*{G.1 Sistema de Reportes Especializados}
+El sistema de análisis genera reportes detallados que facilitan la comprensión de patrones de ataque y efectividad de las defensas implementadas:
+\begin{itemize}
+    \item \textbf{Comprehensive Attack Analysis}: Análisis exhaustivo de vectores de ataque y técnicas de evasión implementadas - \bluelink{https://github.com/MiguelPilamunga/DTic/blob/main/snorl_bruteforce/attack_analysis_report.md}{attack analysis}
+    \item \textbf{Defense Effectiveness Assessment}: Evaluación detallada de la efectividad de sistemas de detección y contramedidas - \bluelink{https://github.com/MiguelPilamunga/DTic/blob/main/snorl_bruteforce/defense_analysis_report.txt}{defense analysis}
+    \item \textbf{Distributed Attack Coordination Analysis}: Análisis de coordinación y sincronización en ataques distribuidos - \bluelink{https://github.com/MiguelPilamunga/DTic/blob/main/snorl_bruteforce/distributed_attack_analysis.md}{distributed analysis}
+    \item \textbf{Defense Implementation Methodology}: Guía metodológica para implementación de defensas adaptativas - \bluelink{https://github.com/MiguelPilamunga/DTic/blob/main/snorl_bruteforce/defense_implementation_guide.md}{implementation guide}
+\end{itemize}
+
+\subsection*{G.2 Herramientas de Despliegue y Monitoreo}
+\begin{itemize}
+    \item \textbf{Automated Rule Deployment}: Sistema de despliegue automatizado para reglas de detección - \bluelink{https://github.com/MiguelPilamunga/DTic/blob/main/snorl_bruteforce/deploy_detection_rules.py}{rule deployment}
+    \item \textbf{Real-time Monitoring Dashboard}: Dashboard interactivo para monitoreo en tiempo real - \bluelink{https://github.com/MiguelPilamunga/DTic/blob/main/snorl_bruteforce/monitoring_dashboard.sh}{monitoring dashboard}
+    \item \textbf{Network Discovery Engine}: Motor de descubrimiento automático de topología de red - \bluelink{https://github.com/MiguelPilamunga/DTic/blob/main/snorl_bruteforce/docker_network_discovery.py}{network discovery}
+\end{itemize}
+
+\section*{Anexo H: Persistencia de Datos y Sistema de Logs}
+\addcontentsline{toc}{section}{Anexo H: Persistencia de Datos y Sistema de Logs}
+
+\subsection*{H.1 Bases de Datos Especializadas}
+El sistema implementa bases de datos optimizadas para el almacenamiento y análisis de grandes volúmenes de datos de seguridad:
+\begin{itemize}
+    \item \textbf{Detection Analysis Database}: Base de datos especializada en almacenamiento de resultados de análisis de detección - \bluelink{https://github.com/MiguelPilamunga/DTic/blob/main/snorl_bruteforce/detection_analysis.sqlite}{detection database}
+    \item \textbf{Integrated Attack Intelligence DB}: Sistema integrado de inteligencia de ataques con correlación de eventos - \bluelink{https://github.com/MiguelPilamunga/DTic/blob/main/snorl_bruteforce/integrated_attack_db.sqlite}{attack database}
+\end{itemize}
+
+\subsection*{H.2 Sistema Centralizado de Logs}
+La arquitectura de logging proporciona trazabilidad completa de todas las actividades del sistema:
+\begin{itemize}
+    \item \textbf{Attack Vector Logs}: Registros detallados de actividades de atacantes y vectores utilizados - \bluelink{https://github.com/MiguelPilamunga/DTic/tree/main/snorl_bruteforce/logs/attacker}{attacker logs}
+    \item \textbf{IDS Detection Logs}: Logs especializados del sistema de detección con análisis de eventos - \bluelink{https://github.com/MiguelPilamunga/DTic/tree/main/snorl_bruteforce/logs/snort}{IDS logs}
+    \item \textbf{Target Services Logs}: Registros de servicios objetivo con análisis de comportamiento - \bluelink{https://github.com/MiguelPilamunga/DTic/tree/main/snorl_bruteforce/logs/target}{target logs}
+\end{itemize}
+
+\section*{Anexo I: Documentación Técnica del Proyecto}
+\addcontentsline{toc}{section}{Anexo I: Documentación Técnica del Proyecto}
+
+\subsection*{I.1 Arquitectura y Diseño del Sistema}
+La documentación arquitectónica proporciona una visión integral del diseño del sistema y las decisiones técnicas implementadas: \bluelink{https://github.com/MiguelPilamunga/DTic/blob/main/snorl_bruteforce/documentation/lab_architecture.md}{architecture documentation}
+
+\subsection*{I.2 Visualización de la Topología de Red}
+\begin{itemize}
+    \item \textbf{Interactive Network Diagram}: Diagrama interactivo de la topología experimental implementada - \bluelink{https://github.com/MiguelPilamunga/DTic/blob/main/snorl_bruteforce/network_diagram.mermaid}{network diagram}
+    \item \textbf{Dynamic Diagram Generator}: Generador automático de diagramas de red basado en configuración actual - \bluelink{https://github.com/MiguelPilamunga/DTic/blob/main/snorl_bruteforce/network_diagram.py}{diagram generator}
+\end{itemize}
+
+\section*{Anexo J: Estructura Integral del Proyecto}
+\addcontentsline{toc}{section}{Anexo J: Estructura Integral del Proyecto}
+
+\subsection*{Repositorio Principal y Organización de Recursos}
+
+El proyecto se encuentra alojado integralmente en GitHub bajo el repositorio: \bluelink{https://github.com/MiguelPilamunga/DTic.git}{repositorio principal}
+
+La siguiente estructura describe los componentes principales del framework de análisis de seguridad y detección de ataques de fuerza bruta contextualizados mediante inteligencia artificial:
+
+\subsubsection*{Núcleo de Herramientas de Análisis}
+\begin{itemize}
+    \item \textbf{advanced\_stealth\_bruteforce.py} - \bluelink{https://github.com/MiguelPilamunga/DTic/blob/main/snorl_bruteforce/advanced_stealth_bruteforce.py}{advanced stealth bruteforce} \\
+    Framework principal de ataques sigilosos que implementa técnicas avanzadas de evasión de sistemas de detección mediante algoritmos adaptativos y análisis comportamental.
+    
+    \item \textbf{ultimate\_stealth\_bruteforce.py} - \bluelink{https://github.com/MiguelPilamunga/DTic/blob/main/snorl_bruteforce/ultimate_stealth_bruteforce.py}{ultimate stealth bruteforce} \\
+    Motor de ataque de última generación que integra machine learning para predicción de credenciales y técnicas anti-forenses para evasión de sistemas heurísticos.
+    
+    \item \textbf{stealth\_attack\_detector.py} - \bluelink{https://github.com/MiguelPilamunga/DTic/blob/main/snorl_bruteforce/stealth_attack_detector.py}{stealth attack detector} \\
+    Sistema de detección especializado que utiliza análisis estadístico y reconocimiento de patrones para identificar ataques de baja intensidad y técnicas de evasión sofisticadas.
+    
+    \item \textbf{statistical\_detection\_engine.py} - \bluelink{https://github.com/MiguelPilamunga/DTic/blob/main/snorl_bruteforce/statistical_detection_engine.py}{statistical detection engine} \\
+    Motor estadístico que implementa algoritmos de aprendizaje no supervisado para la detección de anomalías comportamentales y patrones de ataque previamente desconocidos.
+\end{itemize}
+
+\subsubsection*{Reglas Especializadas para Sistemas IDS}
+\begin{itemize}
+    \item \textbf{advanced\_detection\_rules\_based\_on\_results.rules} - \bluelink{https://github.com/MiguelPilamunga/DTic/blob/main/snorl_bruteforce/advanced_detection_rules_based_on_results.rules}{advanced detection rules} \\
+    Conjunto de reglas dinámicas que se adaptan basándose en resultados de análisis previos, implementando técnicas de aprendizaje continuo para mejora de la detección.
+    
+    \item \textbf{advanced\_stealth\_detection.rules} - \bluelink{https://github.com/MiguelPilamunga/DTic/blob/main/snorl_bruteforce/advanced_stealth_detection.rules}{stealth detection rules} \\
+    Reglas especializadas diseñadas específicamente para detectar técnicas de ataque sigiloso, incluyendo ataques de temporización variable y evasión de firmas tradicionales.
+    
+    \item \textbf{ecuadorian\_attack\_detection.rules} - \bluelink{https://github.com/MiguelPilamunga/DTic/blob/main/snorl_bruteforce/snort_config/rules/ecuadorian_attack_detection.rules}{ecuadorian attack detection} \\
+    Sistema de reglas contextualizado que incorpora patrones lingüísticos, culturales e institucionales específicos del entorno ecuatoriano para detección de ataques localizados.
+\end{itemize}
+
+\subsubsection*{Infraestructura de Despliegue y Orquestación}
+\begin{itemize}
+    \item \textbf{docker-compose.yml} - \bluelink{https://github.com/MiguelPilamunga/DTic/blob/main/snorl_bruteforce/docker-compose.yml}{docker compose configuration} \\
+    Configuración maestra de orquestación que define la arquitectura distribuida del laboratorio experimental, incluyendo servicios de ataque, detección y monitoreo.
+    
+    \item \textbf{ansible/} - \bluelink{https://github.com/MiguelPilamunga/DTic/tree/main/snorl_bruteforce/ansible}{ansible playbooks} \\
+    Suite completa de playbooks para automatización del ciclo de vida del entorno experimental, desde despliegue inicial hasta ejecución de pruebas coordinadas.
+    
+    \item \textbf{containers/} - \bluelink{https://github.com/MiguelPilamunga/DTic/tree/main/snorl_bruteforce/containers}{container definitions} \\
+    Arquitectura de contenedores especializados que proporciona aislamiento y reproducibilidad para diferentes componentes del sistema experimental.
+\end{itemize}
+
+\subsubsection*{Sistema de Análisis y Documentación Científica}
+\begin{itemize}
+    \item \textbf{attack\_analysis\_report.md} - \bluelink{https://github.com/MiguelPilamunga/DTic/blob/main/snorl_bruteforce/attack_analysis_report.md}{attack analysis report} \\
+    Documento de análisis exhaustivo que presenta resultados cuantitativos y cualitativos de las técnicas de ataque implementadas, incluyendo métricas de efectividad y análisis comparativo.
+    
+    \item \textbf{defense\_analysis\_report.txt} - \bluelink{https://github.com/MiguelPilamunga/DTic/blob/main/snorl_bruteforce/defense_analysis_report.txt}{defense analysis report} \\
+    Evaluación técnica de las estrategias defensivas implementadas, con análisis de tasas de detección, falsos positivos, y recomendaciones de optimización.
+    
+    \item \textbf{distributed\_attack\_analysis.md} - \bluelink{https://github.com/MiguelPilamunga/DTic/blob/main/snorl_bruteforce/distributed_attack_analysis.md}{distributed attack analysis} \\
+    Análisis especializado de ataques coordinados y distribuidos, evaluando técnicas de sincronización temporal y evasión de sistemas de correlación de eventos.
+\end{itemize}
+
+\subsubsection*{Persistencia de Datos y Sistema de Telemetría}
+\begin{itemize}
+    \item \textbf{detection\_analysis.sqlite} - \bluelink{https://github.com/MiguelPilamunga/DTic/blob/main/snorl_bruteforce/detection_analysis.sqlite}{detection analysis database} \\
+    Base de datos optimizada que almacena resultados de análisis de detección con capacidades de consulta avanzada para investigación posterior y análisis estadístico.
+    
+    \item \textbf{integrated\_attack\_db.sqlite} - \bluelink{https://github.com/MiguelPilamunga/DTic/blob/main/snorl_bruteforce/integrated_attack_db.sqlite}{integrated attack database} \\
+    Sistema de base de datos integrado que correlaciona información de ataques, patrones detectados, y métricas de rendimiento del sistema defensivo.
+    
+    \item \textbf{logs/} - \bluelink{https://github.com/MiguelPilamunga/DTic/tree/main/snorl_bruteforce/logs}{system logs directory} \\
+    Arquitectura centralizada de logging que proporciona trazabilidad completa de actividades del sistema, facilitando análisis forense y debuggeo avanzado.
+\end{itemize}
+
+\vspace{1cm}
+\noindent\textbf{Acceso al Repositorio Completo:} La totalidad del código fuente, documentación técnica, configuraciones especializadas, y recursos experimentales se encuentran disponibles para consulta y reproducción en: \bluelink{https://github.com/MiguelPilamunga/DTic.git}{GitHub Repository}

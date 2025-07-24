@@ -1,0 +1,24 @@
+\babel@toc {spanish}{}\relax 
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {3.1}{\ignorespaces Metodología híbrida BDD+DBR+LLM aplicada al desarrollo y evaluación del sistema}}{15}{figure.caption.15}%
+\contentsline {figure}{\numberline {3.2}{\ignorespaces Interfaz del agente LLM analizando infraestructura containerizada, referenciando archivos de escaneo previamente generados y proponiendo mejoras al script base para lograr indetectabilidad}}{16}{figure.caption.16}%
+\contentsline {figure}{\numberline {3.3}{\ignorespaces Agente LLM ejecutando refinamiento de script de escaneo de red, implementando técnicas de baja presencia incluyendo escaneo distribuido y perfiles temporales lentos para mapeo de red sin detección}}{16}{figure.caption.17}%
+\contentsline {figure}{\numberline {3.4}{\ignorespaces Logs del sistema IDS mostrando detección inmediata de escaneo tradicional con alertas en múltiples puertos (21, 46372, 46377, 46382), evidenciando la visibilidad de técnicas convencionales de reconocimiento}}{17}{figure.caption.18}%
+\contentsline {figure}{\numberline {3.5}{\ignorespaces Análisis de tráfico mostrando detección de paquetes ICMP durante operaciones de conectividad desde máquina atacante hacia servidor víctima, confirmando la visibilidad de técnicas básicas de reconocimiento}}{17}{figure.caption.19}%
+\contentsline {figure}{\numberline {3.6}{\ignorespaces Ejecución de prompt especializado en ciencias cognitivas aplicadas a interacción digital, generando modelo estadístico para simulación de comportamiento humano auténtico en sistemas de ataque}}{18}{figure.caption.20}%
+\contentsline {figure}{\numberline {3.7}{\ignorespaces Segunda iteración del script de escaneo de red, implementando técnicas de evasión mejoradas incluyendo delays aleatorios y variación de parámetros para reducir detectabilidad}}{19}{figure.caption.21}%
+\contentsline {figure}{\numberline {3.8}{\ignorespaces Tercera iteración del script de escaneo de red, implementando refinamientos adicionales con técnicas avanzadas de temporización y fragmentación para evasión completa}}{20}{figure.caption.22}%
+\contentsline {figure}{\numberline {3.9}{\ignorespaces Detección por sistema IDS de operaciones de ping desde atacante hacia objetivo, mostrando alertas de tráfico ICMP y confirmando la visibilidad de técnicas no refinadas}}{20}{figure.caption.23}%
+\contentsline {figure}{\numberline {3.10}{\ignorespaces Prompt base para mejora de fuerza bruta solicitando al agente LLM examinar scripts de ataque existentes, ejecutar análisis de logs IDS y implementar mejoras para evasión total}}{20}{figure.caption.24}%
+\contentsline {figure}{\numberline {3.11}{\ignorespaces Implementación de Advanced Stealth Force con intervalos optimizados (45s→20s), probabilidad de interrupción reducida y perfiles diferenciados: script kiddie, hacker experimentado y herramienta automatizada}}{21}{figure.caption.25}%
+\contentsline {figure}{\numberline {3.12}{\ignorespaces Comparación evolutiva de efectividad: herramientas tradicionales (detectado 100\%) vs Script Básico vs Ultimate Stealth (detectado 0\%), confirmando evasión exitosa mediante timing ultra-extendido, fragmentación y tráfico decoy}}{22}{figure.caption.26}%
+\contentsline {figure}{\numberline {3.13}{\ignorespaces Análisis cuantitativo mostrando mejora dramática: herramientas convencionales 80,000μs vs Script Avanzado 42s (mejora 942,000\%), reducción paralelismo 4→1 conexiones, logrando evasión parcial con detección en puertos específicos}}{23}{figure.caption.27}%
+\contentsline {figure}{\numberline {3.14}{\ignorespaces Comparación comprehensiva herramientas convencionales vs Script Avanzado: timing humanizado, reducción de footprint TCP, eliminación de paralelismo y identificación de vectores detectables restantes (handshakes SSH, patrones de protocolo)}}{24}{figure.caption.28}%
+\contentsline {figure}{\numberline {3.15}{\ignorespaces Implementación de Ultimate Stealth Test integrando todas las técnicas de evasión desarrolladas: fragmentación avanzada, timing ultra-extendido, decoy traffic y rotación de proxies, logrando indetectabilidad completa}}{25}{figure.caption.29}%
+\contentsline {figure}{\numberline {3.16}{\ignorespaces Ejecución de prompt para análisis de 207 contraseñas reales de la Escuela Politécnica Nacional, identificando patrones estructurales LLM y generando expresiones regulares para detección de generación automática}}{26}{figure.caption.30}%
+\contentsline {figure}{\numberline {3.17}{\ignorespaces Sistema integrado implementando generación de contraseñas personalizadas basadas en información del objetivo y desarrollo paralelo de reglas IDS para detección de patrones LLM mediante expresiones regulares contextuales}}{27}{figure.caption.31}%
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\addvspace {10\p@ }
